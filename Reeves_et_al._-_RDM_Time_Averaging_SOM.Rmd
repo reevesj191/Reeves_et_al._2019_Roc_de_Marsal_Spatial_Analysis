@@ -1,0 +1,321 @@
+---
+title: Measuring Spatial Structure in Time-Averaged Deposits
+subtitle: Insights from Roc de Marsal, France
+titlerunning: Measuring Spatial Structure in Time-Averaged Deposits
+authors:
+- name: Jonathan S. Reeves
+  address: George Washington University, Department of Anthropology, 2110 G Street North West, Washington, District of Columbia, 20052, USA
+  email: jsreeves@gwu.edu
+  footnote: Corresponding Author
+- name: Shannon P. McPherron
+  address: Department of Human Evolution, Max Planck Institute for Evolutionary Anthropology, DeutscherPlatz 6, Leipzig, D-04177, GERMANY
+  email: mcpherron@eva.mpg.de
+- name: Vera Aldeias
+  address: Interdisciplinary Center for Archaeology and the Evolution of Human Behaviour, FCHS, Universidade do Algarve, Campus de Gambelas, 8005-139, PORTUGAL
+  email: veraldeias@gmail.com
+- name: Harold L. Dibble
+  address: Department of Anthropology, University of Pennsylvania, Philadelphia, PA, USA
+  email: hdibble@sas.upenn.edu
+  footnote: Deceased
+- name: Paul Goldberg
+  address: Centre for Archaeological Science (CAS), School of Earth and Environmental Sciences, University of Wollongong, Northfields Avenue, Wollongong, NSW 2522 Australia and Institute for Archaeological Sciences, University of Tübingen, Rümelinstr. 23, 72070 Tübingen Germany
+  email: goldberg@uow.edu.au
+- name: Dennis Sandgathe
+  address: Department of Archaeology and Human Evolutionary Studies Program, Simon Fraser University, Vancouver, CANADA
+  email: dms@sfu.ca
+- name: Alain Turq
+  address: None
+  email: alain.turq@orange.fr
+
+date: "`r Sys.Date()`"
+output:
+  pdf_document: rticles::springer_article
+header-includes:
+- \usepackage{lineno}
+- \usepackage{setspace}\doublespacing
+- \journalname{Anthropological and Archaeological Science}
+keywords:
+- time-averaging
+- Paleolithic
+- palimpsets
+- Roc de Marsal
+- Middle Paleolithic
+bibliography: RDM_BIB_SOM.bib
+abstract: |
+  Here are some additional explanations of the moving window analysis, how we determined scale in the Local Moran's I analysis, and some additional figures.
+tables: true
+---
+
+```{r Setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE, 
+                      results = FALSE,
+                      cache = FALSE)
+
+library(knitcitations)
+cleanbib()
+library(ggplot2)
+library(grid)
+library(gridExtra)
+library(raster)
+library(spatstat)
+library(dplyr)
+
+lithics <- read.csv("RDM_MovingWindow_Results.csv")
+lithics <- droplevels.data.frame(lithics, exclude = c("LH", "HL") )
+rdm_layers = c('4', '5', '7', '8', '9')
+
+theme_dens <- theme(axis.title = element_blank(),
+        axis.line = element_line(color = "black"),
+        axis.ticks = element_line(color = "black"),
+        panel.background = element_blank(),
+        strip.background = element_blank(),
+        legend.key.size = unit(0.5,'lines'),
+        legend.key.height = unit(.4,"cm"),
+        legend.text = element_text(size = 7),
+        legend.position = c(.77, .75),
+        legend.title = element_text(size = 7),
+        legend.direction = "vertical",
+        legend.background = element_blank(),
+        plot.title = element_text(size = 10,
+                                  face = 'bold',
+                                  hjust= .5))
+
+# Loading a dataset containing the outline of the cave for the figures
+outline = readRDS('RDM_cave_outline_SOM.RDS')
+
+density.frame <- function(dat, mask_feature, xmin, xmax, ymin, ymax){
+  dat <- dat[is.na(dat$X) == FALSE & is.na(dat$Y) == FALSE,]
+  dens <- ppp(dat$X,
+              dat$Y,
+              c(xmin,xmax),
+              c(ymin,ymax))
+  dens <- raster(density(dens))
+  dens <- mask(dens, mask_feature)
+  dens <- as(dens,"SpatialPixelsDataFrame")
+  return(as.data.frame(dens))
+}
+
+density_plot = function(xy, layers, outline) {
+  
+  plots <- list()
+  for (layer in rev(layers)){  
+  
+    plot.dat <- density.frame(dat = xy[xy$LEVEL == layer,],
+                   mask_feature = outline,
+                   xmin = min(lithics$X),
+                   xmax = max(lithics$X),
+                   ymin = min(lithics$Y),
+                   ymax = max(lithics$Y))
+  
+    plots[[layer]] <-  ggplot(plot.dat, aes(x=x,y=y)) + 
+      geom_tile(aes(fill = layer)) +
+      geom_polygon(data = outline,
+                   aes(x = long, y = lat),
+                   color = "black",
+                   fill = NA)+
+      coord_equal() + 
+      scale_x_continuous(breaks = seq(from = 1016, to = 1020, by = 1),
+                         limits = c(1016, 1020)) +
+      scale_y_continuous(breaks = seq(from = 1005, to = 1018, by = 2),
+                         limits = c(1005, 1018)) +
+      scale_fill_distiller(palette="Spectral",direction = -1, name="Density")+
+      geom_segment(aes(x = 1017, y = 1009.45, xend = 1019, yend = 1010.1),
+                   color = 'grey25', linetype = 'dashed') +
+      theme_dens +
+      theme(axis.text.x = element_text(color = "black", angle = 300, vjust = .3, size = 6),
+            axis.title.y = element_blank()) + 
+      theme(plot.margin = unit(c(0,.1,0,0), "cm")) +
+      ggtitle(paste("Layer", layer))
+  
+      if (layer!='9') {
+            plots[[layer]] = plots[[layer]] +
+              theme(axis.text.y = element_text(color = "white"),
+                    axis.ticks.y = element_blank(),
+                    axis.line.y = element_blank(),
+                    legend.title = element_blank()) } }
+  return(plots)
+
+}
+
+spatial_distribution = function(xy, layers, outline) {
+  
+  plots = list()
+  for (layer in rev(layers)) {
+    mindens <- min(xy[xy$LEVEL == layer,]$dist_data)
+    maxdens <- max(xy[xy$LEVEL == layer,]$dist_data) 
+    xbreaks <- seq(from = mindens, to = maxdens, by = maxdens / 4)
+    rounding = 2
+    if (maxdens > 1) rounding = 0
+    plots[[layer]] <- 
+      ggplot(xy[xy$LEVEL == layer,], aes(x = X, y = Y, color = dist_data)) +
+      geom_polygon(data = outline,
+                   aes(x = long, y = lat),
+                   color = "black",
+                   fill = NA,
+                   inherit.aes = FALSE) +
+      geom_point(size = .3, show.legend = TRUE) +
+      scale_color_distiller(type =  "div",
+                            palette = "RdYlBu",
+                            limits = c(round(mindens,rounding),
+                                       round(maxdens,rounding)),
+                            breaks = round(xbreaks,rounding),
+                            guide = guide_colourbar(title = "",
+                                                    nbin = 5,
+                                                    ticks = TRUE)) +
+      geom_segment(aes(x = 1017, y = 1009.45, xend = 1019, yend = 1010.1),
+                   color = 'grey25', linetype = 'dashed') +
+      theme_dens +
+      coord_equal() +
+      scale_x_continuous(breaks = seq(from = 1016, to = 1020, by = 1),
+                         limits = c(1016, 1020)) +
+      scale_y_continuous(breaks = seq(from = 1005, to = 1018, by = 2),
+                 limits = c(1005, 1018)) +
+      theme(axis.text.x = element_text(color = "black", angle = 300, vjust = .3, size = 6),
+            axis.title.y = element_blank()) + 
+      theme(plot.margin = unit(c(0,.1,0,0), "cm")) +
+      ggtitle(paste("Layer", layer))
+  
+      if (layer!='9') {
+            plots[[layer]] = plots[[layer]] +
+              theme(axis.text.y = element_text(color = "white"),
+                    axis.ticks.y = element_blank(),
+                    axis.line.y = element_blank()) } }
+
+  return(plots)
+  
+}
+
+```
+
+\newpage
+
+__1.0 Further Description of the Moving Window Analysis__
+
+ The moving window analysis presented in this paper (see RDM_Analysis.R) was written in R using RStudio and especially the packages SP and Rgeos. We use a for loop to iterate through each point within each layer. At each point the function draws a buffer, using the _gBuffer_ function, with a radius we specified to create a neighborhood around each point. Neighboring points are then aggregated together using the _over_ function. Following this, the function then calculates the metrics we defined for the neighborhood (e.g. core to flake ratio). These values are then assigned to the original point that defined the center of the buffer. We disigned this function to be flexible so that new user-defined equations or functions can be easily given to it (See the top of the RDM_analysis.R script for examples.). 
+ 
+ There are some caveats to this approach. The size of the window can and will influence the result [@Jelinski1996]. In other words, different window sizes can yield different spatial patterns [@Openshaw1984]. As such, the definition of the window size should always be guided by some preconceived knowledge or justification regarding the scale of the processes that are of interest [@Lloyd2006]. This is often difficult in archaeology and in palimpsests as the scale of behavioral patterns contained within the assemblages is often unknown. It is never appropriate to pick a window size simply because it yields a pattern most interesting to questions at hand. Justification through statistical or theoretical means is always required. Here we choose our window size based on the limits of the excavation. A window size of a 30cm radius was designed to be small enough to document meaningful variation within the excavation. However, it is not too small as to only capture stochastic noise. The code and data are provided here in part so that others can see the impact of changing the scale of analysis on the results.
+
+\newpage
+
+__2.0 Determining Window Sizes for Local Moran's I__
+
+  As outlined above defining the most appropriate window size is critical for yielding valid results. This is also true for the Local Moran's I test. Different scales of analysis can influence the statistical significance of the distribution of values. Often times, the window size can be defined based on some *a priori* knowledge of the processes of interest. In the absence of this knowledge, the window size for each Local Moran's I analysis was statistically derived using a correlogram. The correlogram method compares the results of Moran's I or similar spatial autocorrelation methods at different scales [@Bivand2013]. The correlogram method we use calculates Global Moran's I at increasing window sizes. The result's of Moran's I is then plotted against each window size. Moran's I yields several outputs including (1) Moran's I, (2) a p-value, (3) Z-score. Moran's I informs on the spatial structure of the metric being investigated. In other words, it indicates whether the distribution of our calculated metrics is clustered (Moran's I of 1), random (Moran's I of 0), or evenly distributed (Moran's I of -1). The p-value informs on the statistical significance of this result. The Z-score also reports on statistical significance. Any of these statistics can be plotted against the increasing window size. The scale at which the chosen statistic is highest is argued to reflect meaningful underlying structure in the data at that particular scale and is thus chosen as the defined window size for the Local Moran's I analysis [@Oden1984]. For this research, we used Moran's I as the statistic for each correlogram and chose the scale that exhibited the greatest amount of clustering.
+
+\newpage
+
+__3.0 Distribution of Artifacts by Artifact Class__
+
+
+```{r,echo = FALSE, SOM_FIG_1, fig.height=4.5, fig.width=6.5, dpi=600}
+
+grid.arrange(grobs = density_plot(lithics %>% 
+                                    filter(scraper) %>%
+                                    dplyr::select(LEVEL, X, Y), rdm_layers, outline), ncol =5)
+
+```
+
+**SOM Figure 1: The spatial distribution of scrapers by layer.  The dashed line represents the current dripline (see Figure 1 in the main text).**
+
+```{r, echo = FALSE, SOM_FIG_2, fig.height=4.5, fig.width=6.5, dpi=600}
+
+grid.arrange(grobs = density_plot(lithics %>% 
+                                    filter(core) %>%
+                                    dplyr::select(LEVEL, X, Y), rdm_layers, outline), ncol =5)
+
+```
+
+**SOM Figure 2: The spatial distribution of cores by layer.  The dashed line represents the current dripline (see Figure 1 in the main text).**
+
+```{r,echo = FALSE, SOM_FIG_3, fig.height=4.5, fig.width=6.5, dpi=600}
+
+grid.arrange(grobs = density_plot(lithics %>% 
+                                    filter(DATACLASS=='COMPFLAKE') %>%
+                                    dplyr::select(LEVEL, X, Y), rdm_layers, outline), ncol =5)
+
+```
+
+**SOM Figure 3: The spatial distribution of complete flakes by layer.  The dashed line represents the current dripline (see Figure 1 in the main text).**
+
+```{r,echo = FALSE, SOM_FIG_4, fig.height=4.5, fig.width=6.5, dpi=600}
+
+grid.arrange(grobs = density_plot(lithics %>% 
+                                    filter(DATACLASS=='PROXFLAKE') %>%
+                                    dplyr::select(LEVEL, X, Y), rdm_layers, outline), ncol =5)
+
+```
+
+**SOM Figure 4: The spatial distribution of broken flakes by layer.  The dashed line represents the current dripline (see Figure 1 in the main text).**
+
+```{r,echo = FALSE, SOM_FIG_5, fig.height=4.5, fig.width=6.5, dpi=600}
+
+grid.arrange(grobs = density_plot(lithics %>% 
+                                    filter(BURNED=='YES') %>%
+                                    dplyr::select(LEVEL, X, Y), rdm_layers, outline), ncol =5)
+
+```
+
+**SOM Figure 5: The spatial distribution of burned lithics by layer.  The dashed line represents the current dripline (see Figure 1 in the main text).**
+
+\pagebreak
+
+__4.0 Results of Each Moving Window Analysis__
+
+```{r figure6_flake_weight, fig.height=4.5, fig.width=6.5, dpi=600}
+
+grid.arrange(grobs = spatial_distribution(lithics %>% 
+                                    dplyr::select(LEVEL, X, Y, dist_data = flake.weight),
+                                  rdm_layers, outline), ncol =5)
+
+```
+
+**SOM Figure 6: The spatial distribution of median flake weight across each layer. Though these differences are small it does appear to reveal a trend showing that larger flakes are over represented in the front part of the cave.  The dashed line represents the current dripline (see Figure 1 in the main text).**
+
+```{r figure7_cortex2mass, fig.height=4.5, fig.width=6.5, dpi=600}
+
+grid.arrange(grobs = spatial_distribution(lithics %>% 
+                                    dplyr::select(LEVEL, X, Y, dist_data = cortex2mass),
+                                  rdm_layers, outline), ncol =5)
+#  maxdens <- round(max(lithics[lithics$LEVEL == layer,]$cortex2mass) + 1)
+
+```
+
+**SOM Figure 7: The spatial distribution of cortex across Roc de Marsal.  The dashed line represents the current dripline (see Figure 1 in the main text).**
+
+```{r figure8_breakage, fig.height=4.5, fig.width=6.5, dpi=600}
+
+grid.arrange(grobs = spatial_distribution(lithics %>% 
+                                    dplyr::select(LEVEL, X, Y, dist_data = breakage),
+                                  rdm_layers, outline), ncol =5)
+#  maxdens <- max(lithics[lithics$LEVEL == layer,]$breakage) + .01
+
+```
+
+**SOM Figure 8: Proximal flake to complete flake ratio.  The dashed line represents the current dripline (see Figure 1 in the main text).**
+
+```{r figure9_Scraper2flake, fig.height=4.5, fig.width=6.5, dpi=600}
+
+grid.arrange(grobs = spatial_distribution(lithics %>% 
+                                    dplyr::select(LEVEL, X, Y, dist_data = Scraper2flake),
+                                  rdm_layers, outline), ncol =5)
+
+```
+
+**SOM Figure 9: Scraper to flake ratio.  The dashed line represents the current dripline (see Figure 1 in the main text).**
+
+```{r figure10_core2flake, fig.height=4.5, fig.width=6.5, dpi=600}
+
+grid.arrange(grobs = spatial_distribution(lithics %>% 
+                                    dplyr::select(LEVEL, X, Y, dist_data = core2flake),
+                                  rdm_layers, outline), ncol =5)
+
+```
+
+**SOM Figure 10: Core to flake ratio.  The dashed line represents the current dripline (see Figure 1 in the main text).**
+
+\pagebreak
+
+References
+
