@@ -1,0 +1,1723 @@
+% !TeX program = pdfLaTeX
+\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+%\documentclass[twocolumn]{svjour3}          % twocolumn
+%
+\smartqed  % flush right qed marks, e.g. at end of proof
+%
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+
+\usepackage[hyphens]{url} % not crucial - just used below for the URL
+\usepackage{hyperref}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+%
+% \usepackage{mathptmx}      % use Times fonts if available on your TeX system
+%
+% insert here the call for the packages your document requires
+%\usepackage{latexsym}
+% etc.
+%
+% please place your own definitions here and don't use \def but
+% \newcommand{}{}
+%
+% Insert the name of "your journal" with
+% \journalname{myjournal}
+%
+
+%% load any required packages here
+
+
+
+\usepackage{lineno}
+\usepackage{longtable, booktabs}
+\usepackage{setspace}\doublespacing
+\journalname{Anthropological and Archaeological Science}
+
+\begin{document}
+
+\title{Measuring Spatial Structure in Time-Averaged Deposits }
+ \subtitle{Insights from Roc de Marsal, France} 
+
+    \titlerunning{Measuring Spatial Structure in Time-Averaged Deposits}
+
+\author{  Jonathan S. Reeves \and  Shannon P. McPherron \and  Vera Aldeias \and  Harold L. Dibble \and  Paul Goldberg \and  Dennis Sandgathe \and  Alain Turq \and  }
+
+
+\institute{
+        Jonathan S. Reeves \at
+     George Washington University, Department of Anthropology, 2110 G Street
+ North West, Washington, District of Columbia, 20052, USA \\
+     \email{\href{mailto:jsreeves@gwu.edu}{\nolinkurl{jsreeves@gwu.edu}}}  %  \\
+%             \emph{Present address:} of F. Author  %  if needed
+    \and
+        Shannon P. McPherron \at
+     Department of Human Evolution, Max Planck Institute for Evolutionary
+ Anthropology, DeutscherPlatz 6, Leipzig, D-04177, GERMANY \\
+     \email{\href{mailto:mcpherron@eva.mpg.de}{\nolinkurl{mcpherron@eva.mpg.de}}}  %  \\
+%             \emph{Present address:} of F. Author  %  if needed
+    \and
+        Vera Aldeias \at
+     Interdisciplinary Center for Archaeology and the Evolution of Human
+ Behaviour, FCHS, Universidade do Algarve, Campus de Gambelas, 8005-139,
+ PORTUGAL \\
+     \email{\href{mailto:veraldeias@gmail.com}{\nolinkurl{veraldeias@gmail.com}}}  %  \\
+%             \emph{Present address:} of F. Author  %  if needed
+    \and
+        Harold L. Dibble \at
+     Department of Anthropology, University of Pennsylvania, Philadelphia,
+ PA, USA \\
+     \email{\href{mailto:hdibble@sas.upenn.edu}{\nolinkurl{hdibble@sas.upenn.edu}}}  %  \\
+%             \emph{Present address:} of F. Author  %  if needed
+    \and
+        Paul Goldberg \at
+     Centre for Archaeological Science (CAS), School of Earth and
+ Environmental Sciences, University of Wollongong, Northfields Avenue,
+ Wollongong, NSW 2522 Australia and Institute for Archaeological
+ Sciences, University of Tübingen, Rümelinstr. 23, 72070 Tübingen
+ Germany, Interdisciplinary Center for Archaeology and the Evolution of
+ Human Behaviour, FCHS, Universidade do Algarve, Campus de Gambelas,
+ 8005-139, PORTUGAL \\
+     \email{\href{mailto:goldberg@uow.edu.au}{\nolinkurl{goldberg@uow.edu.au}}}  %  \\
+%             \emph{Present address:} of F. Author  %  if needed
+    \and
+        Dennis Sandgathe \at
+     Department of Archaeology and Human Evolutionary Studies Program, Simon
+ Fraser University, Vancouver, CANADA \\
+     \email{\href{mailto:dms@sfu.ca}{\nolinkurl{dms@sfu.ca}}}  %  \\
+%             \emph{Present address:} of F. Author  %  if needed
+    \and
+        Alain Turq \at
+     None \\
+     \email{\href{mailto:alain.turq@orange.fr}{\nolinkurl{alain.turq@orange.fr}}}  %  \\
+%             \emph{Present address:} of F. Author  %  if needed
+    \and
+    }
+
+\date{Received: date / Accepted: date}
+% The correct dates will be entered by the editor
+
+
+\maketitle
+
+\begin{abstract}
+The use of space, both at the landscape and the site level, is
+considered an important aspect of hominin adaptations that changed
+through time. At the site level, spatial analyses are typically
+conducted on deposits thought to have a high degree of temporal
+resolution. Sites with highly time-averaged deposits are viewed as
+inferior for these analyses because repeated site visits obscure
+individual behavioral events. To the contrary, here we take the view
+that behaviors that repeat themselves in a spatially structured way
+through time are exactly the kinds of behaviors that are potentially
+significant at an evolutionary time scale. In this framework, time
+averaging is seen not as a hindrance but rather as a necessary condition
+for viewing meaningful behavior. To test whether such patterning is
+visible in time-averaged deposits, we use spatial statistics to analyze
+a number of indices designed to measure lithic production, use and
+discard behaviors in a multi-layer, late Neandertal cave site in
+southwest France. We find that indeed some such patterning does exist,
+and thus sites with highly time-averaged deposits have the potential to
+contribute to our understanding of how hominin use of space varied
+through time. This is useful because a great many archaeological sites
+have highly time-average deposits. Interpreting the spatial patterning
+will likely require modeling to create expectations in time-averaged and
+likely emergent contexts such as these.
+\\
+\keywords{
+        time-averaging \and
+        Paleolithic \and
+        palimpsets \and
+        Roc de Marsal \and
+        Middle Paleolithic \and
+    }
+
+
+\end{abstract}
+
+
+\def\spacingset#1{\renewcommand{\baselinestretch}%
+{#1}\small\normalsize} \spacingset{1}
+
+
+\pagebreak
+\linenumbers
+\doublespacing
+
+\textbf{Introduction}
+
+The spatial structure of stone artifacts, fauna, and other
+archaeological features (e.g.~hearths) provide a unique window into how
+past people conceptualized and organized their behaviors in space
+(Aldeias et al. 2012; Alperson-Afil 2008; Alperson-Afil 2017; Bamforth,
+Becker, and Hudson 2005; Clark 2016; Henry et al. 2004; Pettitt 1997;
+Vaquero and Pastó 2001; Yellen 1977). In turn, these patterns ultimately
+reflect the ways in which humans interacted with their physical
+environment. Intra-site spatial analyses thus provide the opportunity to
+gain important insights into the behavior of Paleolithic peoples (Kroll
+and Price 1991; Yvorra 2003; Henry et al. 2004; Henry 2012; Oron and
+Goren-Inbar 2014; Mallol and Hernández 2016; Gopher et al. 2016).
+Closely tied with the advent of processual archaeology in the 1960s,
+spatial analyses utilized the material traces of modern forager activity
+to interpret distributions of artifacts from archaeological sites in
+behavioral terms (e.g Yellen 1977; Binford 1978; Gould and Yellen 1987;
+Simms and Heath 1990; O'Connell, Hawkes, and Jones 1991; Audouze and
+Enloe 1997). This approach focuses on identifying discrete ``zones'' of
+activities whose arrangement in space provide insight into the spatial
+organization of past people's behavior (Clark 2017). Since the 1960s,
+spatial analysis has seen rapid methodological improvements in both data
+collection and analysis. Plumb bobs and meter-sticks have given way to
+devices capable of quickly and accurately mapping whole archaeological
+assemblages in three-dimensional space (Reed et al. 2015; Wheatley and
+Gillings 2013; McPherron, Dibble, and Goldberg 2005), and the increased
+usability and accessibility of geographic information systems in the
+last years provide a multitude of new tools by which spatial
+archaeological data can be visualized and analyzed (Abe et al. 2010;
+Benito-Calvo and Torre 2011; Wheatley and Gillings 2013; Machado et al.
+2016). Simple distribution maps have been replaced with a variety of
+point pattern analyses, geospatial statistics, and multivariate analysis
+(Alperson-Afil et al. 2009; Merrill and Read 2010; Yvorra 2003).
+
+Spatial analysis in Paleolithic studies has, however, slowed in recent
+decades (Clark 2016; Clark 2017). Despite the fact that the
+sophistication and the number of both documentation and analytical tools
+have never been greater, archaeologists still grapple with some
+fundamental issues regarding the formation of the archaeological record.
+Although ethnographic data has been a primary analog for interpreting
+the archaeological record, these data typically represent a time-scale
+of hours to months. Thus, to match this, high temporal resolution is
+often considered a requirement of intra-site spatial analyses
+(Alperson-Afil 2017). In contrast, aside from a small minority of
+possible exceptions (e.g. Leroi-Gourhan 1984; Audouze and Enloe 1997;
+Alperson-Afil et al. 2009), the majority of Paleolithic sites are
+palimpsests formed from sequentially overprinted occupations spanning
+hundreds, or sometimes, thousands of years (Dibble et al. 1997; Bailey
+and Galanidou 2009; Henry 2012; Vaquero, Chacón, et al. 2012). Given the
+destructive nature of time-averaging on signatures of singular behaviors
+(Stern et al. 1993; Stern 1994; Yellen 1977), much research has been
+devoted to obtaining high-resolution data from aggregate assemblages
+(Mallol and Hernández 2016; Vaquero and Pastó 2001). Protocols involving
+a variety of sophisticated excavation and analytical methods including
+\emph{décapage}, high-resolution 3D mapping, refitting, and microbiology
+have been implemented in an attempt to extract individual occupations
+from palimpsests (e.g. Leroi-Gourhan 1984; Bailey 2007; Goldberg and
+Berna 2010; Aldeias et al. 2012; Henry 2012; Bisson et al. 2014; Mallol
+and Hernández 2016). The application of these methods has been met with
+variable success. It is still unclear what constitutes a brief instance
+of activity or an episode of occupation (Vaquero, Alonso, et al. 2012;
+Mallol and Hernández 2016), and when archaeological assemblages or
+features can be isolated in time, determining their synchrony with the
+rest of the assemblage remains problematic (Aldeias et al. 2012; Mallol
+and Hernández 2016). Even thin assemblages from open-air sites, where
+the structure of the archaeological assemblage appears to reflect an
+isochronous event, can still represent several episodes of occupation
+spread across considerable time (Bailey 2007; Bargalló, Gabucio, and
+Rivals 2016; Roda Gilabert, Martínez-Moreno, and Torcal 2016). Rather
+than extract individual activities from variably time-averaged deposits,
+spatial methods have further exposed the underlying complexity of the
+formation of the archaeological record. From the perspective of the
+activities facies model, it seems as if palimpsests are not amenable for
+understanding human behavior at this level. Yet, palimpsest sites are
+far more abundant than the rare the examples when brief moments in time
+are preserved and for this reason should remain the subject of
+archaeological investigation.
+
+This argument is not a recent realization. In response to Schiffer
+(1975), Binford (1981) argued that researchers should not shoehorn the
+archaeological record into the questions we ask but rather tailor our
+questions to match the nature of the record itself. Since the 1970s,
+archaeologists have also suggested that there are merits to
+understanding behavior in time-averaged datasets (Foley 1981; Ebert
+1992; Pettitt 1997; Bamforth, Becker, and Hudson 2005; Holdaway and
+Wandsnider 2008; Bailey and Galanidou 2009; Clark 2017). Palimpsests are
+the result of repeated occupations, often over multiple generations, and
+thus afford the opportunity to investigate processes that structure
+human behavior more in the long-term (Foley 1981; Bailey 2007;
+Wandsnider 2008). The behavioral signatures preserved in these
+temporally coarse assemblages likely tell us something about the
+behavioral repertoire of populations or even taxa (Pettitt 1997).
+Spatial patterning on this coarsened scale no longer reflects individual
+activities but instead shows how broader, more temporally stable
+(e.g.~the layout of a cave or rock shelter), external factors structured
+behaviors. Patterns at this scale potentially document the interaction
+between past populations and their physical environment (Brooks and
+Yellen 1987; Bamforth, Becker, and Hudson 2005). In this regard, caves
+are interesting because they impose physical constraints on how space
+can be used. For instance, the dripline defines an interior, sheltered
+portion of the space versus the exterior, open portion (Riel-Salvatore
+et al. 2013). The movement of air and ventilation may have influenced
+the placement of fires so as to avoid filling the space with smoke or
+burning the fire too quickly. Subtle factors such as differences in
+lighting or temperature across a cave may have influenced the structure
+of behavior. At a more general level, when locations like caves are
+subjected to repeated occupation over long periods of time, the residues
+of previous occupations may structure subsequent ones (Bailey and
+Galanidou 2009; Malinsky-Buller, Hovers, and Marder 2011). If these
+factors structured behavior spatially, then it is likely that artifact
+discard patterns may have been structured as well. Few studies have
+applied intra-site spatial analyses to palimpsests as a whole, but
+previous research has yielded interesting results. Bamforth et al.
+(2005) and Bailey and Galanidou (2009), for instance, were able to
+demonstrate the repeated discard of artifacts in the same locations over
+extended periods of time. However, though these studies suggest that
+palimpsests are structured (to some degree), further assessments of this
+notion may require new methods that consider the behavioral inputs and
+site formation processes under which palimpsests form.
+
+\textbf{Spatial Analysis and Time-Averaged Assemblages}
+
+Prior studies have often focused on describing spatial structure by
+looking at variation in artifact density across a level or horizon (e.g
+Baxter, Beardah, and Wright 1997; Baales 2001; Alperson-Afil 2008;
+Aldeias et al. 2012; Gopher et al. 2016). Artifact density has been
+argued to be advantageous for analyzing time-averaged deposits because
+it is a function of discard. Simply put, areas where past people spent
+more time will have accumulated more artifacts than other areas (Foley
+1981). Thus, spatially delimited densities (i.e.~clusters) of
+archaeological materials provide insight into how past behavior
+structured the formation of the archaeological record (e.g Carr 1984;
+Baales 2001; Yvorra 2003; Gopher et al. 2016). To demonstrate spatial
+variation in artifact density, point and kernel density functions have
+been widely applied (e.g. Baxter, Beardah, and Wright 1997;
+Alperson-Afil et al. 2009; Aldeias et al. 2012; Alperson-Afil 2017).
+However, ethnographic work shows that hunter-gatherer use of space is
+often variable and unconstrained (O'Connell, Hawkes, and Jones 1991;
+Clark 2017). Circumstantial factors such as weather, where individuals
+are coming from, group size, kinship, and anticipated next destinations
+influence the organization of any single episode of occupation
+(Bamforth, Becker, and Hudson 2005). Moreover, differences in the
+use-life of stone tools will also result in the differential
+accumulation of artifacts (Shott 1998). Over time the relationship
+between where behavior occurred and the artifact density will eventually
+be lost. Most ethnographic examples come from open air contexts where
+space is largely unconstrained. If, however, the frequency that
+behaviors occur in a given location is influenced by the space itself,
+as it likely is in caves, then the material traces associated with those
+behaviors will appear in greater proportion to others. In a palimpsest,
+instead of describing behavioral patterns in terms of artifact discard
+intensity, they should be described in terms of artifact discard
+likelihood. Approaching palimpsests in this manner recognizes the
+frenetic conditions under which time-averaged assemblages form but also
+considers that external factors that may more broadly govern the spatial
+organization of activities.
+
+Continuous or repeated occupation, particularly in context with low
+sedimentation rates, can also introduce taphonomic biases into density
+measures. Trampling of previously discarded and still exposed artifacts
+will increase breakage within an archaeological assemblage (Lin et al.
+2016). While a measure of trampling may be a useful indicator of
+activity intensity (Reynard and Henshilwood 2018), unless breakage is
+controlled for it will also inflate artifact density estimates and thus
+must be considered when measuring spatial patterns in artifact discard.
+Heating of surface or near surface artifacts also causes breakage and
+makes artifacts more susceptible to subsequent breakage through other
+processes (Mentzer 2009; Sandrine et al. 2005) thereby also inflating
+density values. Without considering the impact of these processes, we
+run the risk of interpreting density measurements directly as behavior
+when in fact they reflect only taphonomic or geological processes or
+some unknown mix of behavior and these other processes.
+
+With these perspectives in mind, this study further examines whether
+meaningful spatial patterning can be extracted from time-averaged
+deposits. Our investigation focuses on data from the recent
+re-excavation of the Neandertal cave site of Roc de Marsal, located in
+southwest France. We develop methodologies specifically designed for
+palimpsests using spatial statistics and behaviorally meaningful indices
+developed from stone tool analysis. These indices are calculated as
+ratios of different artifact classes and conditions. We then analyze the
+spatial distribution of lithic material as the relative probability of
+discard, while also controlling for the impact of breakage on an
+archaeological assemblage. A neighborhood analysis is used to estimate
+the spatial variability across each layer. While not all of our measures
+showed spatial patterning, many of them did, suggesting that human
+behavior at Roc de Marsal was structured over long time-scales. The
+scale, variation, and co-variation of time allows for a discussion of
+the dynamic nature of human behavior and its impact and signature in
+palimpsests.
+
+\textbf{Materials: The Site of Roc de Marsal}
+
+Roc de Marsal (hereafter also RDM) is a small (\textasciitilde{}80
+m\textsuperscript{2}) cave (Figure 1) situated approximately 5 km
+southwest of Les Eyzies, southwest France, in a small tributary valley
+of the Vézère River. The cave opening faces south-southwest, is about 80
+m above the valley floor, and is just under the overlying plateau. The
+site was intensively excavated twice in the last 50 years, first by Jean
+Lafille from 1953 to 1971 and then more recently, from 2004 to 2010, by
+a large collaborative team (Bordes and Lafille 1962; Turq 1979; Turq et
+al. 2008; D. M. Sandgathe, Dibble, Goldberg, and McPherron 2011; Aldeias
+et al. 2012). We know from Lafille's notebooks that he opened a meter
+square in the central part of the cave and then expanded the excavation
+into adjacent squares before switching to a strategy of excavating a
+trench from approximately the entrance of the cave through to the back
+(Goldberg et al. 2013) (see Figure 1). In addition, Lafille excavated a
+connecting trench into a lateral extension of the main cave.
+Unfortunately, Lafille did not record the spatial coordinates for
+individual finds systematically enough to produce the type of dataset
+required for our analysis. The more recent excavations took a new sample
+from the site by pushing the west profile of Lafille's trench back one
+meter along nearly its entire length, meaning from just outside the
+current dripline to the back of the cave (see Figure 1). The dataset
+from this excavation is what is analyzed here.
+
+\textbf{Figure 1. The cave of Roc de Marsal (upper left), a map showing
+the extent of the cave, the previous excavations, and the most recent
+excavations (right), some of the stacked hearth features in Layer 9
+(center left), and a panoramic (distorted) view of the west profile
+towards the end of the new excavations. The main area analyzed in here
+is shown in this latter photo (primarily E18 to K16).}
+
+The new excavations recognized 13 layers; however, the main artifact
+bearing layers are, from bottom to top, 9 through 2. The archaeology of
+all of these layers is Middle Paleolithic (Turq 1985; Turq et al. 2008;
+D. M. Sandgathe, Dibble, Goldberg, and McPherron 2011; Aldeias et al.
+2012). The base (Layers 9-5) of the sequence is characterized by
+Levallois technology. Layers 4-2 represent a switch to Quina techniques
+of blank production. Denticulates are numerous in Layers 9-7, and the
+proportion of scrapers increases throughout the sequence. Layers 9-7 are
+characterized mostly by red deer and roe deer (Hodgkins et al. 2016;
+Castel et al. 2017). Reindeer are present in Layers 9-8 and increase in
+Layer 7 and above. Bovines and horse are also present. By Layer 5 times
+reindeer dominate the assemblage, accounting for approximately 70\% of
+the NISP, with the rest consisting mainly of horse and bovines. This
+trend continues in Layer 4 where reindeer reach over 80\% of the
+assemblage NISP. Layer 3 shows a more diverse faunal spectrum (though
+sample sizes are small), and Layer 2 shows a return to the Layer 4
+pattern. The sequence has been intensively dated using a variety of
+thermoluminescence and optically stimulated luminescence methods
+(Guibert, Lahaye, and Bechtel 2009; Guérin et al. 2012; Guérin et al.
+2017). The different dating techniques provide somewhat different
+results, but Guérin et al. (2017) use their most reliable set of ages to
+place the base of the sequence in MIS 4 and that the top of the sequence
+in MIS 3. In their view, the transition between MIS 4 and 3 likely
+occurs sometime during the deposition of Layers 6 and 5 . How to
+reconcile this age model with sharply contrasting paleoenvironmental
+proxies coming from geological observations and the faunal spectrum is
+as yet unresolved.
+
+A total station was used to record the location of all artifacts larger
+than 25 mm (piece provenienced finds) (see also Sandgathe et al. (2018)
+for same methods applied to Pech de l'Azé IV). Complete teeth and
+complete bones of non-microfaunal remains smaller than 25 mm were also
+recorded with the total station. All other small artifacts (\textless{}
+25 mm) were included with the sediment buckets and retrieved after wet
+screening as bulk samples (small finds). At the time of our study, the
+complete lithic analysis database was available, but only a limited
+sample of the fauna had been studied, and so these data could not be
+used here. A summary of the data set we use is provided in Table 1. Note
+that Layers 6 and 3 were not included in the spatial analysis because
+their horizontal extent is quite limited. Layer 2 was not included
+because its sample size is small. All of the other layers could be
+traced over a large extent of the cave, though the spatial extent of
+each layer does vary somewhat, and they all have large sample sizes.
+However, there are differences in artifact density. Layer 9 has the
+highest number of lithics per liter (9.4), Layers 8 and 7 have similar
+densities (7.3 and 8.0 respectively), Layer 5 shows an intermediate
+value (4.5) and lithic densities are substantially lower in Layer 4
+(1.5).
+
+\begin{longtable}[]{@{}lrrrrrr@{}}
+\caption{Summary of liters excavated and lithic counts for the Roc de
+Marsal layers analyzed here. The counts include first all lithics and
+then breakdown by cores, tools, flakes and burned
+lithics.}\tabularnewline
+\toprule
+Layer & Liters & Lithics & Cores & Tools & Flakes &
+Burned\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Layer & Liters & Lithics & Cores & Tools & Flakes &
+Burned\tabularnewline
+\midrule
+\endhead
+4 & 1925 & 2932 & 55 & 465 & 1767 & 61\tabularnewline
+5 & 532 & 2411 & 82 & 279 & 1781 & 205\tabularnewline
+7 & 504 & 4025 & 160 & 244 & 3113 & 833\tabularnewline
+8 & 511 & 3709 & 143 & 199 & 2824 & 764\tabularnewline
+9 & 868 & 8132 & 216 & 276 & 6408 & 3150\tabularnewline
+\bottomrule
+\end{longtable}
+
+Intact hearths are also present, particularly in Layers 9 and 7 (Aldeias
+et al. 2012; Goldberg et al. 2012). These hearths vary in size from as
+small as 30 x 50 cm to roughly a meter on each side and are in many
+cases composed of the classic sequence of reddened sediment,
+charcoal-rich base, and overlying ash. There are multiple instances in
+which stacked hearths could be observed as well (see Figure 1). As
+measured by the frequency of heated lithics, Layer 9 shows the most
+intense use of fire (D. M. Sandgathe, Dibble, Goldberg, McPherron, et
+al. 2011). Thereafter the frequency of burned lithics decreases in the
+sequence with a near absence of evidence of fire (in the form of visible
+hearth features or in the form of heated bones or lithics) in Layers
+4-2. Roc de Marsal is interesting for our spatial study in part because
+it highlights issues with palimpsest dissection. In an attempt to
+understand spatial patterning between fires and artifact discard,
+previous research at Roc de Marsal used a combination of
+micromorphological approaches and horizontal excavation (or
+\emph{décapage}) to establish potential surfaces representing brief
+episodes of activity associated with combustion features. However, the
+degree of synchrony between lithic assemblages and other archaeological
+features could not be confidently established. Subsequent spatial
+analyses failed to reveal any meaningful patterning between the density
+of lithics and combustion features within each \emph{décapage} surface
+(Aldeias et al. 2012).
+
+Rather than attempt to increasingly resolve temporal units of analysis,
+as was previously done (e.g. Aldeias et al. (2012)), this study searches
+for behavioral patterns in the palimpsests that comprise the
+archaeological horizons at Roc de Marsal. Thus, each layer was spatially
+analyzed as a single unit of analysis. One of the disadvantages of
+looking for spatial patterning at Roc de Marsal is that the horizontal
+extent of excavation in each layer is limited. While the excavations
+sampled from the front to the back of the cave, the width of the
+excavation was generally only about 1 m. Further, this excavation
+corridor went mostly through the central portion of the cave, and so we
+have very limited samples from near the cave wall. We note, however,
+that Roc de Marsal is not a large cave, and so the excavations actually
+sampled a large proportion of the space inside the cave. In addition,
+from a practical point of view, it would have been inadvisable to
+excavate laterally more of the cave (i.e.~up to the cave wall) as it
+would have permanently removed a record of the stratigraphic sequence
+there. Thus, while we miss Lafille's excavated sample in our analysis,
+the sample we were able to analyze is not atypical for this kind of
+site. On the other hand, while the small size of the Roc de Marsal cave
+means that a rather limited excavation captures a large percentage of
+each layer, it also means that where behaviors could have taken place in
+the cave was also constrained, and this could, in turn, force a certain
+amount of spatial association.
+
+\textbf{Methods: Neighborhood Analysis}
+
+This study employs a neighbor analysis to characterize spatial variation
+in artifact discard patterns across each layer. Moving windows or
+neighborhood analyses are used in geographic information science to
+document local variation in a given variable (Lloyd 2006). Neighborhoods
+of a defined two-dimensional size and shape are drawn over the area of
+interest. Observations located within each neighborhood are summarized
+according to a given statistic (Hagen-Zanker 2016). The end result
+produces a map where each data point represents the calculation of that
+statistic for its neighborhood. Often times such techniques produce
+smoothed rasterized representation of the moving window result but they
+can also be point based. Point density functions are a common
+application of this type of analysis in archaeology and have been
+applied at a variety of different scales (Baxter, Beardah, and Wright
+1997; Abe et al. 2010; Alperson-Afil and Goren-Inbar 2010; Aldeias et
+al. 2012; Blasco et al. 2016).
+
+Here we use a circular window of 30 cm in radius as our neighborhood and
+calculate the local variation of each artifact metric (see the
+calculation of metrics below) based on this sample. This window size was
+determined largely by the spatial scope of the study area. Too small a
+window risks introducing local noise into the result, and too large a
+window risks aggregating meaningful local variation into noise. While
+GIS software packages offer a variety of moving window tools (e.g.~Point
+density, Kernel density, Optimized hotspot analyses) (McCoy and Johnston
+2001), our study requires the flexibility to calculate various
+artifact-metrics. Thus we custom developed the moving window analysis
+used here in R with the ``rgeos'' package specifically for the purpose
+of calculating each metric. We have included the raw data, source code,
+and the markdown document used to create this publication (cf. Clarkson
+et al. (2015); Marwick (2017); McPherron (2018)).
+
+\textbf{Methods: Calculation of Metrics}
+
+We use seven indices to describe discard patterns of the following
+artifact classes and conditions: (1) overall stone artifact density, (2)
+complete flake weight, (3) cortex to mass ratio, (4) proximal flake
+ratio, (5) burning ratio, (6) scraper to flake ratio (7) core to flake
+ratio. The mechanics and behavioral justification for these ratios are
+as follows.
+
+\emph{Artifact density} for each neighborhood was calculated as the
+number of stone artifacts. Though density measurements are potentially
+biased by breakage, this describes the general distribution of artifacts
+across each layer and, therefore, provides a baseline comparison for the
+other indices.
+
+\emph{Complete flake weight} is calculated as the median weight of
+complete flakes within a neighborhood. The median flake weight in each
+neighborhood (See moving window section) is then divided by the median
+flake weight of the entire layer. This allows the values to be
+standardized such that flake weight is comparable across layers. This is
+a common practice in spatial analysis, as it allows one to find local
+variation in a metric given its global value (Isserman 1977). Values
+associated with this metric center on 1. Values above 1 mean that the
+median flake weight in the window is greater than median flake weight of
+the whole layer and values below 1 mean the opposite. Our expectation
+for this measure is that areas of tool production (i.e.~retouch) and
+rejuvenation might have smaller flakes, though the sensitivity of this
+measure for these behaviors is tempered in this case by our 2.5 cm size
+cut-off.
+
+\emph{Cortex to mass ratio} can act as a proxy for reduction stage under
+the assumption that greater proportions of the cortex are removed at
+early stages of the production sequence (Oron and Goren-Inbar 2014);
+areas associated with early-stage reduction will have higher cortex to
+mass ratios where middle and later stages will have less (Toth 1985).
+This assumption, however, is in part impacted by the technology
+(e.g.~Levallois versus Quina techniques for blank production) and by
+lithic transport patterns (see below), neither of which was constant
+throughout the sequence. Some caution is then required when considering
+differences between layers. To calculate this ratio, for each artifact,
+the relative proportion of cortex was previously measured using
+intervals and here converted to a decimal based on the interval
+mid-point. Surface area is estimated as a two-dimensional rectangular
+surface by multiplying the artifact length by width (Douglass et al.
+2015). Estimates of the cortical surface area are then derived by
+multiplying the proportion of cortex by the surface area. Cortical
+surface area estimates are then divided by mass to control for the
+influence of size on the cortical surface. Aside from reduction
+intensity considerations, the movement of already worked materials into
+and out of the site will affect the overall amount of cortex in an
+assemblage. Based on the cortex ratio (Dibble et al. 2005), it has
+already been established (Lin, McPherron, and Dibble 2015) that in
+Layers 5 and 4 cortex is under-represented, whereas in Layers 9-7 the
+expected amount of cortex is present. Nevertheless, here we can examine
+how the cortex that is present is distributed spatially.
+
+\emph{The proximal flake ratio} is measured by calculating the ratio of
+proximal flakes to complete and proximal flakes. Proximal flakes here
+are defined as broken flakes preserving more than 50\% of the platform.
+As this index increases, the representation of proximal flakes within a
+given neighborhood increases meaning a greater degree of breakage. Thus,
+high values reflect an abundance of breakage and low values the
+opposite. We included this breakage index to infer areas of intense
+trampling. Holding other factors constant, areas that are subject to
+more activity or trampling should have a higher frequency of flake
+breakage (Nielsen 1991). However, breakage rates will also depend on
+factors such as the substrate and the size/morphology of the flakes
+themselves, both of which could vary across the layer and
+size/morphology will vary between layers for a number of reasons
+including changes in blank production technology. The relationship
+between flake size/morphology and breakage is poorly understood, and so
+we are unable to control either of these factors here. We do know,
+however, that burning increases breakage and so heated flakes are
+removed from this calculation.
+
+\emph{The burning ratio} is designed to investigate the spatial
+structure of burned artifacts as a proxy for the placement of fires.
+Fire placement within the cave was likely structured and fires may have
+in turn structured where behaviors took place (e.g Galanidou 1997;
+Pettitt 1997; Gopher et al. 2016), thus understanding whether there is
+structure in the spatial distribution of burned artifacts may provide
+insight into the organization of behaviors in space. Note that we are
+not suggesting that artifacts were intentionally heated, rather they are
+incidentally heated when fires are constructed on artifact bearing
+deposits or tossed directly into an active fire (Aldeias et al. 2016).
+Thus if there is consistency in where burning events occurred, then
+there should also be structure in the burned artifacts. However, burning
+increases breakage which then over-represents burned lithics relative to
+other lithics within any given neighborhood. Rather than computing the
+relative frequency of burned lithics to all other lithics, we account
+for breakage by only considering complete and proximal flakes in our
+estimation. The ratio of burned complete flakes and burned proximal
+flakes to all complete and proximal flakes was calculated for each
+neighborhood.
+
+\emph{The scraper to flake ratio} and \emph{core to flake ratio} are
+designed to characterize the discard of cores and scrapers relative to
+flakes across each layer. Previous studies have argued that artifact
+types such as scrapers and cores are also structured around combustion
+features (Pettitt 1997), and so we may expect that locations subject to
+continuous burning over long time scales may also structure the discard
+patterns of scrapers and cores. The distribution of scrapers is
+calculated as the relative frequency of scrapers to the number of
+proximal and complete flakes. As with scrapers, the spatial distribution
+of cores is calculated as the frequency of cores relative to the number
+of proximal and complete flakes (core to flake ratio). The inclusion of
+complete and proximal flakes only is, again, to account for potential
+distortion of values due to breakage introduced by taphonomic process.
+
+\emph{Local Indicators of Spatial Association}
+
+The neighbor analysis allows us to observe spatial variation in the
+calculated metrics. However, it provides no way to quantitatively
+characterize the meaningfulness of the variation we observe in each
+layer. To address this, a Local Moran's I test is applied to the results
+of the moving window analysis (Anselin 1995). Global Moran's I then
+characterizes the spatial structure of a given attribute as non-random
+clustered, non-random even, or random (Bivand, Pebesma, and Gómez-Rubio
+2013). This is done using a neighborhood analysis to analyze first local
+relationships between values observed at a specific point and its
+neighbors. The global structure of a distribution of values is then
+calculated based on these measurements. Since Moran's I requires an
+understanding of spatial relationships at a local scale, it can be
+broken down into its individual parts. Statistical tests can then be
+applied to each of these parts to determine the statistical significance
+of clustering or dispersion at the local scale (Anselin 1995; Lloyd
+2006; Bivand, Pebesma, and Gómez-Rubio 2013). The significance of
+clustering around each point in these analyses can be plotted in space.
+Using this method, the statistical meaningfulness of spatial variation
+in each metric is detected as statistically non-random ``clusters'' on
+the local scale. Results of the Local Moran's I test can then be used to
+demarcate areas of statistically significant clusters of high and low
+values and outliers (Lloyd 2006). Outliers are defined as statistically
+significant clusters of high values that are surrounded by clusters of
+low values or vice versa. This technique is beneficial as it provides an
+objective determination of when spatial variation in each calculated
+metric is the result of non-random processes. In doing so, this provides
+a way to better discern between spurious variation and systematic
+structuring of artifact discard patterns.
+
+This study uses the spdep package in R to implement Local Moran's I
+methods as developed by Anselin Anselin (1995). Clusters of high and low
+values were determined with 95\% confidence. Hereafter, statistically
+significant clusters of high values are referred to as high clusters and
+statistically significant clusters of low values will be referred to as
+low clusters. Outliers, where non-random high values are surrounded by
+low values or the opposite, are referred to as high-outliers and
+low-outliers respectively. An additional note of importance is that both
+Local and Global Moran's I are scale-dependent and require the
+definition of a neighborhood size. Since the results of this test are
+directly influenced by the size of the neighborhood used, additional
+measures must be taken to determine the most appropriate window size
+(this window is independent of the moving window used to calculate the
+above metrics at each artifact location). We used a correlogram to
+estimate the most appropriate window size for each metric. This approach
+involves calculating Global Moran's I at a series of incrementally
+increasing neighborhood sizes (Bivand, Pebesma, and Gómez-Rubio 2013).
+The results are then plotted against neighborhood size. The neighborhood
+size exhibiting the greatest autocorrelation (Moran's I) was then chosen
+as the window size for the Local Moran's I test (see SOM). Clusters of
+statistically significant high and low values were then used to further
+explore the significance of the spatial variation of each metric.
+
+\emph{Interpretative Framework}
+
+One large risk of the approach taken here is that, given the number of
+indices (metrics) examined and the nature of the spatial statistics
+applied to them, any one layer from any site is likely to produce a
+pattern of some kind. While \emph{a priori} we expect caves to produce
+patterns for the reasons outlined in the introduction, interpreting
+these patterns in the absence of any specific \emph{a priori}
+predictions or expectations about what patterns, in particular, are
+expected risks falling into the Texas sharpshooter fallacy wherein
+patterns are searched for, found and only then are explanations built to
+account for them. To help mitigate this problem, we look for repetition
+in the patterning between layers. In this framework, each layer is
+viewed as an independently drawn sample of the accumulation of behaviors
+preserved at the site with the one (mostly) constant being the physical
+configuration of the cave. Patterning that repeats across these
+independent samples is then more robust and likewise are any
+explanations for this patterning. The extent to which layers actually
+represent independent samples can be challenged on the basis, for
+instances, that visible traces of previous activities (in the underlying
+layer) may continue to structure behavior in the new layer just as we
+suspect happens within a layer. We see no clear way of addressing this
+issue in a single cave sequence. Clearly, strong behavioral inferences
+require consistent patterning in multiple sites.
+
+\textbf{Figure 2. The spatial distribution of lithic artifact density
+across each layer. Deep red colors indicate areas with high densities of
+artifacts whereas lighter red values grading to blue indicate lower
+artifact densities. The coloring for each layer is scaled separately,
+and the values are per 30 cm\textsuperscript{2}. The dashed line
+represents the current dripline (see also Figure 1).}
+
+\textbf{Results: Inter-level comparisons of Spatial Organization}
+
+\emph{Density}
+
+Layers 5 and 4 are less dense than the underlying Layers 9, 8 and 7
+(Table 1), and the spatial distribution of artifact density is variable
+between layers (Figure 2). At the base of the sequence, in Layer 9,
+artifact density is predominately concentrated towards the front of the
+cave, though a smaller concentration of artifacts is also observed at
+the area beyond the cave terrace. Artifact densities in Layer 8 are also
+primarily concentrated at the front of the cave. Additionally, moderate
+concentrations of artifacts are present throughout the cave terrace.
+Layer 7 shows spatially discrete concentrations of high artifact
+densities occurring in the front and terrace parts of the cave. In Layer
+5 areas of high density are spread throughout the cave terrace. A small
+concentration of artifacts also occurs in the front of the cave.
+Finally, in Layer 4 the highest artifact densities are again towards the
+front of the cave. Note that consistent with Aldeias et al. (2012), the
+locations of visible fire features in Layers 9, 7, and 5 do not appear
+to be related to artifact density.
+
+\textbf{Figure 3. Clustering in median flake weight values across each
+layer. Orange represents statistically significant clusters where median
+flake weight is high. Blue represents statistically significant clusters
+where median flake weight is low. Note that only complete flakes are
+included. Grey represents non-significance. The dashed line represents
+the current dripline (see also Figure 1).}
+
+\emph{Complete Flake Weight}
+
+Though median flake weight varies in magnitude between layers, there is
+consistency in its representation across the excavated areas of the cave
+in Layers 9, 8, 7, 5 (Figure 3). In each of these layers, the median
+flake weight is greatest in the front of the cave. However, there is a
+considerable degree of noise in this pattern (SOM Figure 6). Despite the
+noise, the Local Moran's I results reveal that statistically significant
+high clusters of median flake weight values are consistently found in
+the front part of the cave. Moreover, statistically significant clusters
+of low median flake weight values occur towards the cave terrace. A
+linear regression reveals a significant relationship showing that flakes
+greater than the median flake weight for each layer become increasingly
+over-represented as one moves from the cave terrace to the front of the
+cave (p-value: \textless{} .001, R-squared: 0.115). Layer 4 shows a
+different pattern with no relationship between the distance from the
+front of the cave and median artifact weight.
+
+\textbf{Figure 4. Spatial distribution of non-random clusters of the
+cortex to mass ratio. Orange represents significant clusters of the high
+cortex to mass ratio. These are areas where there are greater amounts of
+cortex. Blue represents areas with significant clusters of the low
+cortex to mass ratio meaning very little cortex is found in these areas.
+The dashed line represents the current dripline (see also Figure 1).}
+
+\emph{Cortex}
+
+Non-random clustering of the cortex to mass ratio is observed in each
+layer (Figure 4). However, there is little consistency in the structure
+of the patterning between layers (SOM Figure 7). Layer 9 demonstrates
+the greatest degree of clustering. Large statistically high clusters of
+cortex to mass ratios occur on the cave terrace. The greatest clustering
+occurs nearest to the dripline. However, smaller high clusters are also
+present on the part of the cave terrace farthest from the mouth of the
+cave. Low clusters are at the farthest most extreme of the cave terrace
+as well as at the front of the cave. High and low clusters in Layer 8
+are situated throughout the cave. Layer 7 shows no coherent patterning
+in the locations of both high clusters and low clusters as both types of
+clusters occur throughout all parts of the cave. In Layer 5 clusters
+representing low cortex to mass ratios occur predominantly on the cave
+terrace, farthest away from the dripline and mouth of the cave. In Layer
+4, high clusters are in the front of the cave and at the very front of
+the cave terrace and clusters with low cortex are in the center portion
+of the cave terrace.
+
+\textbf{Figure 5. Top: The spatial distribution of burned flakes in
+relation to all flakes. Note how layers 7 and 9 show the greatest degree
+of spatial organization of burned flake proportions. Bottom: The spatial
+distribution of high and low clusters associated with the burning ratio.
+Orange indicates areas with statistically non-random high proportions of
+burned flakes. Blue represents statistically significant areas where
+there are fewer burned flakes. The dashed line represents the current
+dripline (see also Figure 1).}
+
+\emph{Burned Flakes}
+
+The lower Layers 9, 8, and 7 all possess significantly higher
+proportions of burned lithics than in upper Layers 5 and 4 (Table 1).
+Layer 9 exhibits the greatest amount of structure (Figure 5). High
+proportions of burned flakes form a single non-random high cluster that
+straddles the dripline. The extent of the cluster begins in the front of
+the cave and extends on to the cave terrace. The spatial patterning of
+burned lithic values encompassed by the extent of this cluster creates a
+focal point comprised of the highest proportion of burned flakes. The
+proportion of burned flakes systematically decreases from this focal
+point. Non-random low clusters of burned flake proportions surround the
+edges of this focal point and extend toward the front and central parts
+of the cave as well as on to the farthest most reaches of the cave
+terrace. Despite the absence of visible fire features, Layer 8 has a
+proportion of burned lithics intermediate to Layer 9 below it and Layer
+7 above it. The majority of Layer 8 has low proportions of burned
+flakes. Low clusters of burned flake proportions are, thus, found
+throughout all sections of the cave in this layer. A few high
+concentrations of burned flake proportions form along the right side of
+the front portion of the cave and cave terrace. While the overall
+proportion of burned flakes is considerably less, Layer 7 exhibits
+spatial patterning similar to that of Layer 9. High proportions of
+burned flakes form two non-random clusters in the front and terrace
+sections of the cave. Burned flake proportions surrounding these loci
+are largely not significant or comprise statistically significant low
+clusters of burned flakes. In Layer 5 the overall percentage of burned
+flakes is relatively low; however, some clustering of burned flake
+proportions can be observed. The highest proportions of burned flakes
+form a statistically significant cluster on the terrace part of the
+cave. Although Layers 9, 7 and 5 all have evidence of combustion
+features, no single feature directly corresponds to areas of high
+burning. Layer 4 has the lowest number of burned lithics. Variation in
+the proportion burned flakes is observed, however, and 75\% of the
+values are less than .05. Though the Local Moran's I test revealed both
+high and low clusters of burned lithics, there is no structure to their
+overall distribution.
+
+\textbf{Figure 6. The spatial distribution of high and low clusters
+associated with the ratio of proximal flakes to all flakes. Orange
+indicates statistically high clusters of proximal flake ratios, meaning
+there are more broken flakes relative to complete flakes. Blue indicates
+statistically low clusters of proximal flake ratio values. In these
+areas there are fewer broken flakes and more complete flakes. The dashed
+line represents the current dripline (see also Figure 1).}
+
+\emph{Proximal Flake Ratio}
+
+The distribution of flake breakage is variable across layers (SOM Figure
+8). In Layer 9, low clusters of proximal flakes relative to all flakes
+are situated on the cave terrace. Clustering showing statistically
+significant high proportions of broken flakes are located in the front
+section of the cave (Figure 6). The distribution of both the high and
+low clusters of broken flakes also inversely corresponds with the
+spatial distribution of burned flakes. This high cluster corresponds
+with the statistically significant low cluster of burned lithics in the
+front of the cave but is situated on the edge of a high cluster of
+burned flakes, whereas low clusters representing low proportions of
+proximal flakes are directly within the burn zone. In Layer 8 high and
+low clusters of proximal flake proportions are distributed throughout
+the layer with no general patterning to their distribution. The relative
+frequency of proximal flakes in Layer 7 is structured similarly to Layer
+9. Clusters representing high breakage patterns are situated toward the
+front of the cave whereas clusters of low breakage are found in and
+extending beyond the cave terrace away from the mouth of the cave. The
+high cluster in the back also exhibits a similar spatial association
+with the focal points of burned lithics. High clustering indicative of
+breakage, corresponds with the low clusters of burned flakes and
+vice-versa. For Layer 5, clusters with low proportions of proximal
+flakes are found on the cave terrace whereas high clusters are in the
+front of the cave and in the parts of the excavation farthest from the
+mouth of the cave. Finally, this index in Layer 4 is generally not
+structured in space as much of the variation is non-significant. The
+high and low clusters that are present show little evidence of spatial
+patterning.
+
+\textbf{Figure 7. The spatial distribution of high and low clusters of
+the relative frequency of scrapers in comparison to flakes. Orange
+points reflect areas where the proportions of scrapers are high. Blue
+reflects statistically significant areas where scraper proportions are
+low. The dashed line represents the current dripline (see also Figure
+1).}
+
+\emph{Scraper to flake ratio}
+
+There is little consistency in how the proportion of scrapers in
+comparison to flakes is distributed throughout each layer (SOM Figure
+9). Overall, scrapers comprise a small proportion of each assemblage.
+However, non-random structure is observed in each layer (Figure 7). In
+Layer 9, the high scraper to flake ratio values are primarily in the
+front of the cave and at the outer edge of the terrace. Though noisy,
+statistically significant clusters of the high scraper to flake ratio
+values appear to form a ``ring-like'' shape that surrounds a
+statistically significant cluster with low values. This low cluster also
+corresponds to the area where the proportion of burned flakes is the
+highest. In Layer 8, the largest high cluster of the scraper to flake
+ratio values are in the front of the cave along the drip line. However,
+high and low clusters are found throughout the cave. Within Layer 7 high
+clusters are in the front of the cave whereas low clusters are
+predominantly situated on the cave terrace. A high cluster also appears
+to correspond with the cluster of high proportions of burned flakes,
+with a large degree of overlap. Additionally, a few isolated small high
+clusters can be observed in the middle of the cave as well. The majority
+of the clustering of high scraper values in Layer 5 occurs in the front
+whereas low-clustering occurs toward the front of the cave terrace and
+beyond. Scraper to flake ratios within the cave terrace of Layer 5 is
+predominantly non-significant. Layer 4 shows the greatest degree of
+spatial structure with high clusters occupying the cave terrace and
+beyond whereas the low clusters in the front and central sections of the
+cave.
+
+\textbf{Figure 8. The spatial distribution of the core to flake ratio.
+Orange points reflect areas where the proportions of cores are high.
+Blue reflects statistically significant areas where core proportions are
+low. The dashed line represents the current dripline (see also Figure
+1).}
+
+\emph{Core to flake ratio}
+
+The core to flake ratio shows a fair degree of consistency across the
+layers (SOM Figure 10). Greater proportions of cores (low flake to core
+ratio) occur in the front of the cave and on the cave terrace. In
+addition, high clusters of the core to flake ratio occur; however, this
+pattern is not as systematic as the pattern observed in median weight.
+The organization of cores within each layer also shows similarities with
+the spatial distribution of scrapers. Much like the pattern observed in
+the scrapers, the clustering of core to flake ratios shows the greatest
+amount of patterning in Layer 9. Aside from a few very small high
+clusters of cores in the front and on the cave terrace, high clusters of
+the core to flake ratio are in the front of the cave (Figure 8). As with
+the scraper to flake ratio, high clusters of the core to flake ratio are
+situated on the edge of the area with high burned flake proportion
+values. The large low cluster of core to flake ratios on the cave
+terrace corresponds to the area of highest burned flake proportions. Low
+clusters of cores extend beyond the cave terrace away from the drip line
+to the very front of the excavation. High and low clusters of core to
+flake ratios are detected in Layer 8 but do not appear to show any
+apparent spatial structure. In Layer 7 statistically significant high
+and low clusters of cores are relatively small compared to Layer 9. The
+largest high clusters are on the cave terrace and front part of the
+cave. Few smaller clusters of high proportions of core to flake ratios
+are also found toward the central part of the cave and toward the very
+front of the excavation. In Layer 5, there is a fair amount of spatial
+separation between high clusters and low clusters of cores. High
+clusters occupy the front and cave terrace nearest to the dripline
+whereas low clusters are situated in the middle and form of the cave
+terrace. In Layer 4, clusters of high core to flake ratios are in the
+front of the cave and the cave terrace.
+
+\textbf{Discussion}
+
+The results yielded by this study make for several talking points
+regarding the spatial structure of time-averaged assemblages as well as
+for drawing behavioral inferences from them. The results of each index
+show spatial variation across each layer. None of the variations in each
+of these measurements tracks the overall density of artifacts,
+suggesting that they provide a useful, if not better, means for
+understanding stone artifact discard patterns preserved within
+palimpsests. Moreover, the Local Moran's I showed that the spatial
+variation of every metric also formed statistically non-random clusters.
+In the literature repetition is a common theme in how time-averaged
+patterns arise and, thus, are thought to represent the ``modal
+behavior'' (Foley 1981). At RDM, median complete flake weight is always
+greatest within the cave itself (as opposed to the terrace) in Layers
+9-5. This result seems to suggest that at least some discard behavior
+was consistently carried out in specific parts of the cave. Though size
+sorting due to small changes in slope within the cave, particularly
+towards the mouth but also some towards the back, also need to be
+further examined. However, many of our indices showed inconsistent
+variation in both their spatial distribution and in relationship to one
+another across each layer. Despite the detection of non-random
+patterning, this lack of consistency in patterning makes it difficult to
+interpret many of these metrics in terms of long-term behavioral trends.
+This may imply that most of these discard behaviors were not structured
+by the morphology of the cave. Rather, it means that behavior was
+structured in relation to the other behaviors being carried out in the
+cave. The tendency for high core to flake ratios to cluster away from
+high cortex to mass ratio values in Layers 9-5 may suggest that cores
+were consistently discarded away from where they were initially reduced.
+This seems to support the notion that long terms discard patterns
+associated with the various activities carried out at Roc de Marsal did
+not occur in a vacuum. Palimpsests form as the result of the interaction
+of many different behavioral, environmental, and taphonomic processes
+through time and space. Thus, the non-random structure identified by the
+Local Moran's I test likely emerged from this dynamic interaction
+instead of from any modal or singular behavior. In this sense, it does
+not seem sensible to attempt to interpret these patterns in terms of the
+singular behaviors assumed to be reflected in them.
+
+This is no more apparent than in patterning surrounding burning episodes
+at RDM. Despite the fact, that fire features span the excavated area in
+both Layers 9 and 7, there is a high degree of structure in each level.
+Counterintuitively, high proportions of burned flakes form large focal
+points that generally do not correspond to any single combustion
+feature. In the long term, aggregation localities subjected to burning
+would likely have been maintained with ash raked out and redeposited (an
+action detected micromorphologically in some cases at Roc de Marsal, see
+Aldeias et al. (2012) and Goldberg et al. (2012)). If this is so, then
+the weak correlation between visible combustion features in Layers 9 and
+7 and the hotspots of heated lithics may be due to some extent to
+maintenance over time, thus disassociating ash with the burn location.
+This, in turn, may be due to a limited number of places that fires can
+be placed. However, this was not true in all cases and thus it is
+difficult to generalize whether heated artifacts are a better index of
+fire locations than visible traces of fire.
+
+Nevertheless, it is interesting that the larger area reflected of
+continuous burning also has an effect on the discard patterns of other
+artifact types. Clearest are the high core to flake ratio, scraper to
+flake ratio and proximal flake ratio, which are all situated on the
+edges or just outside of these burn zones (Figure 9). The propensity to
+discard scrapers and cores, in combination with high levels of flake
+breakage, suggests that areas close to these areas of high burned flake
+ratios are high activity areas. Though it is not possible to know which
+behaviors were carried out at this location, it is clear that fire
+played an important enough role to structure the discard behaviors of
+the occupants of Roc de Marsal over long timescales. Thus when we look
+at the Layer 9 assemblage without reference to the spatial data,
+scrapers less frequently show signs of heating in comparison to
+unretouched flakes (Fisher Exact test, p = 0.035). This pattern is less
+clear in Layer 7 than it is in Layer 9. Though proximal flake ratios are
+very similar, the pattern with the core to flake and the scraper to
+flake ratios is less clear. Still the pattern is strong enough that at
+the assemblage level again scrapers are less likely to show signs of
+heating (Fisher Exact test, p = 0.000). Why the spatial structure is
+less clear in Layer 7 is difficult to say. Both Layers 9 and 7 have
+evidence of the structured use of space in the form of stacked hearths
+(Aldeias et al. 2012). However, Layer 7 also has more than half as many
+lithics as Layer 9, and the areas immediately around the burning
+hotspots in Layer 7 are less well sampled given the limits of the
+excavation and some clandestine excavations that occurred before the
+most recent excavations. By comparison, in Layer 8, which has a high
+percentage of heated lithics but no visible evidence of hearths and no
+clear spatial patterning in heated lithics, scrapers are just as likely
+as flakes to show signs of heating (Fisher Exact test, p = 0.297). Thus
+the spatial patterning observed in these Layers 9 and 7 provides insight
+into how archaeological signatures of structured behavioral patterns
+transform during palimpsest formation. Though high-resolution data can
+show how the discard of formalized tools is associated with individual
+fire features (Pettitt 1997), over time, it is not any one single
+feature that structures the record but rather these broader zones of
+continuous use and their spatial relationship with the cave.
+
+\textbf{Figure 9. Each figure has as its base map the areas of high
+burning in Layer 7 (top row) and Layer 9 (bottom row). Overlaid on this
+are the high clusters of scrapers and of cores and the low clusters of
+complete flakes. The dashed line represents the current dripline (see
+also Figure 1).}
+
+The patterns revealed at RDM demonstrate that the aggregation of
+episodes of behavior over-time imposes structure on the time-averaged
+archaeological record. This alone demonstrates the utility of
+palimpsests for understanding hominin behavior over long time-scales.
+However, interpreting these patterns and their evolutionary relevance is
+currently difficult. The disconnect between individual instances or
+relatively brief episodes of behavior and the long-term pattern present
+at Roc de Marsal reflects a well-known phenomenon in social science
+often referred to as emergence (Schelling 1978; Miller and Page 2007).
+Though it has been documented in primate tool use studies (Luncz et al.
+2016), it has been rarely discussed in archaeology. If time-averaged
+behavioral patterns are better studied as a whole, instead of being
+reduced to the individual parts, then we must reconsider how we approach
+palimpsests. Rather than continue to attempt to isolate individual
+occupation or behavioral episodes, it may be more useful to devise
+research projects that attempt to better understand the complex
+interactions of hominin behaviors, ecology, taphonomy, and the formation
+of the archaeological record. Though this raises issues over how to
+develop analogs to understand processes that operate on time-scales
+beyond our lifetime, the combination of ethnoarchaeology and
+computational individual-based modeling is well poised to do this.
+
+Ultimately, Roc de Marsal provides some initial insights into the
+behavioral structure of palimpsests. However, the notions asserted here
+will require further validation through future research. This will
+require the continued development of methods that provide robust
+expectations for what aggregated patterns of behavior look like in the
+archaeological record. With the increased use of spatial statistics and
+agent-based modeling, it is becoming possible to generate and test
+hypotheses surrounding the behavioral and taphonomic complexity that
+underlay palimpsests.
+
+\textbf{Conclusion}
+
+Rather than dissect palimpsests, this study argues that there are merits
+to analyzing palimpsests as a whole. In doing so, we develop a novel
+methodology that combines some of the taphonomic and behavioral inputs
+that influence the formation of time-average assemblages. The
+application of these methods to the aggregate assemblages of Roc de
+Marsal shows that palimpsests, at least in this case, contain structured
+patterns. However, in many cases, these patterns are not easily tied
+back to behavior. The structure revealed in the archaeological layers at
+Roc de Marsal provides a starting point for discussions regarding the
+nature of the patterns present within palimpsests and the ways in which
+to best draw behavioral inferences from them. Ultimately, this will
+require continued work and the further incorporation of sophisticated
+geospatial statistics and computational modeling.
+
+\textbf{Acknowledgments}
+
+The research at Roc de Marsal had the financial support of the US
+National Science Foundation (Grants \#09177739 and \#0551927), the
+Leakey Foundation, the University of Pennsylvania Research Foundation,
+the Service Régional de l'Archéologie d'Aquitaine and the Conseil
+Général de la Dordogne. The authors thank Jean-Jacques Hublin and the
+Max Planck Society for supporting this research presented here. JR
+thanks David Braun and the Center for the Advanced Study of Human
+Paleobiology at George Washington University for supporting his
+research. The approach taken here to time-averaged assemblages
+benefitted from valuable discussions with a number of people including
+Simon Holdaway, Sam Lin, Željko Režek, and Luke Premo. A special thanks
+goes to José Ramón Rabuñal Gayo who reviewed the code and code/text
+consistency. As always, all mistakes remain our own. We note that Harold
+Dibble participated fully in the research presented here and was able to
+comment on the nearly final manuscript. The Roc de Marsal team misses
+him greatly.
+
+\textbf{Supporting Information}
+
+S1. rMarkdown file used to make this document (Reeves et al. - RDM Time
+Averaging.rmd).
+
+S2. Supplementary information (Reeves et al. - RDM Time Averaging
+SOM.pdf).
+
+S3. rMarkdown file used to make the supplementary information (Reeves et
+al. - RDM Time Averaging SOM.rmd)
+
+S4. Data files needed to compile markdown documents (Reeves et al. - RDM
+Time Averaging.zip)
+
+\section*{References}\label{references}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\hypertarget{ref-Abe2010}{}
+Abe, Yoshiko, Curtis W Marean, Peter J Nilssen, Zelalem Assefa,
+Elizabeth C Stone, Yoshiko Abe, Curtis W Marean, Peter J Nilssen,
+Zelalem Assefa, and Elizabeth C Stone. 2010. ``A Review and Critique of
+Quantification Procedures , and a New Image-Analysis GIS Approach.''
+\emph{Amerian Antiquity} 67 (4): 643--63.
+
+\hypertarget{ref-Aldeias2016}{}
+Aldeias, Vera, Harold L. Dibble, Dennis Sandgathe, Paul Goldberg, and
+Shannon J.P. McPherron. 2016. ``How heat alters underlying deposits and
+implications for archaeological fire features: A controlled
+experiment.'' \emph{Journal of Archaeological Science} 67. Elsevier Ltd:
+64--79.
+doi:\href{https://doi.org/10.1016/j.jas.2016.01.016}{10.1016/j.jas.2016.01.016}.
+
+\hypertarget{ref-Aldeias2012}{}
+Aldeias, Vera, Paul Goldberg, Dennis Sandgathe, Francesco Berna, Harold
+L Dibble, Shannon P McPherron, Alain Turq, and Zeljko Rezek. 2012.
+``Evidence for Neandertal use of fire at Roc de Marsal (France).''
+\emph{Journal of Archaeological Science} 39 (7). Elsevier Ltd: 2414--23.
+doi:\href{https://doi.org/10.1016/j.jas.2012.01.039}{10.1016/j.jas.2012.01.039}.
+
+\hypertarget{ref-Alperson-Afil2008}{}
+Alperson-Afil, Nira. 2008. ``Continual fire-making by Hominins at Gesher
+Benot Ya'aqov, Israel.'' \emph{Quaternary Science Reviews} 27 (17-18):
+1733--9.
+doi:\href{https://doi.org/10.1016/j.quascirev.2008.06.009}{10.1016/j.quascirev.2008.06.009}.
+
+\hypertarget{ref-Alperson-Afil2017a}{}
+---------. 2017. ``Spatial Analysis of Fire: Archaeological Approach to
+Recognizing Early Fire.'' \emph{Current Anthropology} 58 (S16):
+S258--S266. doi:\href{https://doi.org/10.1086/692721}{10.1086/692721}.
+
+\hypertarget{ref-Alperson-Afil2010a}{}
+Alperson-Afil, Nira, and Naama Goren-Inbar. 2010. \emph{The Acheulian
+Site of Gesher Benot Ya ` aqov}. Vol. II. New York.
+
+\hypertarget{ref-Alperson-Afil2009}{}
+Alperson-Afil, Nira, Gonen Sharon, Mordechai Kislev, Yoel Melamed, Irit
+Zohar, Shosh Ashkenazi, Rivka Rabinovich, et al. 2009. ``Spatial
+organization of hominin activities at gesher benot ya'aqov, Israel.''
+\emph{Science} 326 (5960): 1677--80.
+doi:\href{https://doi.org/10.1126/science.1180695}{10.1126/science.1180695}.
+
+\hypertarget{ref-Anselin1995}{}
+Anselin, Luc. 1995. ``Local indicators of spatial association ---
+LISA.'' \emph{Geographical Analysis} 27 (2): 93--115.
+doi:\href{https://doi.org/10.1111/j.1538-4632.1995.tb00338.x}{10.1111/j.1538-4632.1995.tb00338.x}.
+
+\hypertarget{ref-Audouze1997}{}
+Audouze, Françoise, and James G. Enloe. 1997. ``High resolution
+archaeology at verberie: Limits and interpretations.'' \emph{World
+Archaeology} 29 (2): 195--207.
+doi:\href{https://doi.org/10.1080/00438243.1997.9980373}{10.1080/00438243.1997.9980373}.
+
+\hypertarget{ref-Baales2001}{}
+Baales, Michael. 2001. ``From lithics to spatial and social
+organization: Interpreting the lithic distribution andraw material
+composition at the final palaeolithic site of Kettig (Central Rhineland,
+Geramny).'' \emph{Journal of Archaeological Science} 28 (2): 127--41.
+doi:\href{https://doi.org/10.1006/jasc.1999.0545}{10.1006/jasc.1999.0545}.
+
+\hypertarget{ref-Bailey2007}{}
+Bailey, Geoff. 2007. ``Time perspectives, palimpsests and the
+archaeology of time.'' \emph{Journal of Anthropological Archaeology} 26
+(2): 198--223.
+doi:\href{https://doi.org/10.1016/j.jaa.2006.08.002}{10.1016/j.jaa.2006.08.002}.
+
+\hypertarget{ref-Bailey2009}{}
+Bailey, Geoff, and Nena Galanidou. 2009. ``Caves palimpsests and
+dwelling spaces: Examples from the Upper Palaeolithic of south-east
+Europe.'' \emph{World Archaeology} 41 (2): 215--41.
+doi:\href{https://doi.org/10.1080/00438240902843733}{10.1080/00438240902843733}.
+
+\hypertarget{ref-Bamforth2005}{}
+Bamforth, Douglas B, Mark Becker, and Jean Hudson. 2005. ``Intrasite
+Spatial Analysis, Ethnoarchaeology , and Paleoindian Land-Use on the
+Great Plains: The Allen Site.'' \emph{Amerian Antiquity} 70 (3):
+561--80.
+
+\hypertarget{ref-Bargallo2016}{}
+Bargalló, Amèlia, Maria Joana Gabucio, and Florent Rivals. 2016.
+``Puzzling out a palimpsest: Testing an interdisciplinary study in level
+O~of Abric Romaní.'' \emph{Quaternary International} 417: 51--65.
+doi:\href{https://doi.org/10.1016/j.quaint.2015.09.066}{10.1016/j.quaint.2015.09.066}.
+
+\hypertarget{ref-Baxter1997}{}
+Baxter, M. J., C. C. Beardah, and R. V.S. Wright. 1997. ``Some
+archaeological applications of kernel density estimates.'' \emph{Journal
+of Archaeological Science} 24 (4): 347--54.
+doi:\href{https://doi.org/10.1006/jasc.1996.0119}{10.1006/jasc.1996.0119}.
+
+\hypertarget{ref-Benito-calvo2011}{}
+Benito-Calvo, Alfonso, and Ignacio de la Torre. 2011. ``Analysis of
+orientation patterns in Olduvai Bed I assemblages using GIS techniques :
+Implications for site formation processes.'' \emph{Journal of Human
+Evolution} 61 (1). Elsevier Ltd: 50--60.
+doi:\href{https://doi.org/10.1016/j.jhevol.2011.02.011}{10.1016/j.jhevol.2011.02.011}.
+
+\hypertarget{ref-Binford1978}{}
+Binford, Lewis R. 1978. ``Dimensional Analysis of Behavior and Site
+Structure : Learning from an Eskimo Hunting Stand Author (.''
+\emph{American Antiquity} 43 (3): 330--61.
+
+\hypertarget{ref-Binford1981a}{}
+---------. 1981. ``Behavioral Archaeology and the `Pompei Premise'.''
+\emph{Journal of Anthropological Research} 37 (3): 195--208.
+doi:\href{https://doi.org/10.1017/CBO9781107415324.004}{10.1017/CBO9781107415324.004}.
+
+\hypertarget{ref-Bisson2014}{}
+Bisson, Michael S., April Nowell, Carlos Cordova, Melanie Poupart, and
+Christopher Ames. 2014. ``Dissecting palimpsests in a Late Lower and
+Middle Paleolithic flint acquisition site on the Madaba Plateau,
+Jordan.'' \emph{Quaternary International} 331. Elsevier Ltd; INQUA:
+74--94.
+doi:\href{https://doi.org/10.1016/j.quaint.2013.05.031}{10.1016/j.quaint.2013.05.031}.
+
+\hypertarget{ref-Bivand2013}{}
+Bivand, Roger, Edzer Pebesma, and Virgillio Gómez-Rubio. 2013.
+\emph{Applied Spatial Data Analysis with R}. New York: Springer.
+doi:\href{https://doi.org/10.1007/978-0-387-78171-6}{10.1007/978-0-387-78171-6}.
+
+\hypertarget{ref-Blasco2016}{}
+Blasco, Ruth, Jordi Rosell, Pablo Sañudo, Avi Gopher, and Ran Barkai.
+2016. ``What happens around a fire: Faunal processing sequences and
+spatial distribution at Qesem Cave (300 ka), Israel.'' \emph{Quaternary
+International} 398: 190--209.
+doi:\href{https://doi.org/10.1016/j.quaint.2015.04.031}{10.1016/j.quaint.2015.04.031}.
+
+\hypertarget{ref-bordes_decouverte_1962}{}
+Bordes, F, and J Lafille. 1962. ``Découverte d'un Squelette d'enfant
+Moustérien Dans Le Gisement de Roc de Marsal, Commune de
+Campagne-Du-Bugue (Dordogne).'' \emph{CR Acad Sci Paris} 254: 714--15.
+
+\hypertarget{ref-Brooks1987}{}
+Brooks, Alison, and John Yellen. 1987. ``The Preservation of Activity
+Areas in the Archaeological Record: Ethnoarchaeological and
+Archaeological Work in Northwest Ngamiland, Botswana.'' In \emph{Method
+and Theory for Activity Area Research: An Ethnoarchaeological Approach},
+63--106. New York: Columbia University Press.
+
+\hypertarget{ref-Carr1984}{}
+Carr, Chris. 1984. ``The Nature of Organization of Intrasite
+Archaeological Records and Spatial Analytic Approaches to Their
+Investigation.'' In \emph{Advances in Archaeological Method and Theory
+7}, 103--22. Orlando: Academic Press.
+
+\hypertarget{ref-castel_neandertal_2017}{}
+Castel, Jean-Christophe, Emmanuel Discamps, Marie-Cécile Soulier, Dennis
+Sandgathe, Harold L Dibble, Shannon J P McPherron, Paul Goldberg, and
+Alain Turq. 2017. ``Neandertal Subsistence Strategies during the Quina
+Mousterian at Roc de Marsal (France).'' \emph{Cleaning up a Messy
+Mousterian: How to Describe and Interpret Late Middle Palaeolithic
+Chrono-Cultural Variability in Atlantic Europe} 433 (March): 140--56.
+doi:\href{https://doi.org/10.1016/j.quaint.2015.12.033}{10.1016/j.quaint.2015.12.033}.
+
+\hypertarget{ref-Clark2016}{}
+Clark, Amy E. 2016. ``Time and space in the middle paleolithic: Spatial
+structure and occupation dynamics of seven open-air sites.''
+\emph{Evolutionary Anthropology} 25 (3): 153--63.
+doi:\href{https://doi.org/10.1002/evan.21486}{10.1002/evan.21486}.
+
+\hypertarget{ref-Clark2017}{}
+---------. 2017. ``From Activity Areas to Occupational Histories: New
+Methods to Document the Formation of Spatial Structure in
+Hunter-Gatherer Sites.'' \emph{Journal of Archaeological Method and
+Theory} 24 (4). Journal of Archaeological Method; Theory: 1300--1325.
+doi:\href{https://doi.org/10.1007/s10816-017-9313-7}{10.1007/s10816-017-9313-7}.
+
+\hypertarget{ref-clarkson_archaeology_2015}{}
+Clarkson, Chris, Mike Smith, Ben Marwick, Richard Fullagar, Lynley A
+Wallis, Patrick Faulkner, Tiina Manne, et al. 2015. ``The Archaeology,
+Chronology and Stratigraphy of Madjedbebe (Malakunanja II): A Site in
+Northern Australia with Early Occupation.'' \emph{Journal of Human
+Evolution} 83 (June): 46--64.
+doi:\href{https://doi.org/10.1016/j.jhevol.2015.03.014}{10.1016/j.jhevol.2015.03.014}.
+
+\hypertarget{ref-dibble_measurement_2005}{}
+Dibble, Harold L, Utsav A Schurmans, Radu P Iovita, and Michael V
+McLaughlin. 2005. ``The Measurement and Interpretation of Cortex in
+Lithic Assemblages.'' \emph{American Antiquity} 70 (3): 545--60.
+doi:\href{https://doi.org/10.2307/40035313}{10.2307/40035313}.
+
+\hypertarget{ref-Dibble1997}{}
+Dibble, Harold L., Philip G. Chase, Shannon P. McPherron, and Alain
+Tuffreau. 1997. ``Testing the Reality of a ` Living Floor ' with
+Archaeological Data.'' \emph{American Antiquity} 62 (4): 629--51.
+
+\hypertarget{ref-Douglass2015}{}
+Douglass, Matthew J., Simon J. Holdaway, Patricia C. Fanning, and Justin
+I. Shiner. 2015. ``An Assessment and Archaeological Application of
+Cortex Measurment in Lithic Assemblages.'' \emph{Amerian Antiquity} 19
+(1): 64--82.
+
+\hypertarget{ref-Ebert1992}{}
+Ebert, James I. 1992. \emph{Distriubtional Archaeology}. Salt Lake City:
+University of Utah Press.
+
+\hypertarget{ref-Foley1981a}{}
+Foley, Robert. 1981. ``Off-site archaeology: an alternative approach for
+the short-sited.'' In \emph{Pattern of the Past: Studies in Honour of
+David Clarke}, 33:139--53. Cambridge: Cambridge University Press.
+
+\hypertarget{ref-Galanidou1997}{}
+Galanidou, Nena. 1997. \emph{Home is weather the hearth is: The Spatial
+Organisation of the Upper Palaeolithic Rockshelter Occupation at Klithi
+and Kastritsa in Northwest Greece.} Oxford: BAR Internationla series.
+
+\hypertarget{ref-goldberg_testing_2013}{}
+Goldberg, Paul, Vera Aldeias, Harold Dibble, Shannon McPherron, Dennis
+Sandgathe, and Alain Turq. 2013. ``Testing the Roc de Marsal Neandertal
+"Burial'' with Geoarchaeology.'' \emph{Archaeological and
+Anthropological Sciences}, 1--11.
+doi:\href{https://doi.org/10.1007/s12520-013-0163-2}{10.1007/s12520-013-0163-2}.
+
+\hypertarget{ref-Goldberg2010}{}
+Goldberg, Paul, and Francesco Berna. 2010. ``Micromorphology and
+context.'' \emph{Quaternary International} 214 (1-2). Elsevier Ltd;
+INQUA: 56--62.
+doi:\href{https://doi.org/10.1016/j.quaint.2009.10.023}{10.1016/j.quaint.2009.10.023}.
+
+\hypertarget{ref-goldberg_new_2012}{}
+Goldberg, Paul, Harold Dibble, Francesco Berna, Dennis Sandgathe,
+Shannon J P McPherron, and Alain Turq. 2012. ``New Evidence on
+Neandertal Use of Fire: Examples from Roc de Marsal and Pech de l'Azé
+IV.'' \emph{The Neanderthal Home: Spatial and Social Behaviours} 247
+(0): 325--40.
+doi:\href{https://doi.org/10.1016/j.quaint.2010.11.015}{10.1016/j.quaint.2010.11.015}.
+
+\hypertarget{ref-Gopher2016}{}
+Gopher, Avi, Yoni Parush, Ella Assaf, and Ran Barkai. 2016. ``Spatial
+aspects as seen from a density analysis of lithics at Middle Pleistocene
+Qesem Cave: Preliminary results and observations.'' \emph{Quaternary
+International} 398. Elsevier Ltd: 103--17.
+doi:\href{https://doi.org/10.1016/j.quaint.2015.09.078}{10.1016/j.quaint.2015.09.078}.
+
+\hypertarget{ref-Gould1987}{}
+Gould, Richard A., and John E. Yellen. 1987. ``Man the hunted:
+Determinants of household spacing in desert and tropical foraging
+societies.'' \emph{Journal of Anthropological Archaeology} 6 (1):
+77--103.
+doi:\href{https://doi.org/10.1016/0278-4165(87)90017-1}{10.1016/0278-4165(87)90017-1}.
+
+\hypertarget{ref-guerin_multi-method_2012}{}
+Guérin, Guillaume, Emmanuel Discamps, Christelle Lahaye, Norbert
+Mercier, Pierre Guibert, Alain Turq, Harold L Dibble, et al. 2012.
+``Multi-Method (TL and OSL), Multi-Material (Quartz and Flint) Dating of
+the Mousterian Site of Roc de Marsal (Dordogne, France): Correlating
+Neanderthal Occupations with the Climatic Variability of MIS-3.''
+\emph{Journal of Archaeological Science} 39 (10): 3071--84.
+doi:\href{https://doi.org/10.1016/j.jas.2012.04.047}{10.1016/j.jas.2012.04.047}.
+
+\hypertarget{ref-guerin_complementarity_2017}{}
+Guérin, Guillaume, Marine Frouin, Joséphine Tuquoi, Kristina J Thomsen,
+Paul Goldberg, Vera Aldeias, Christelle Lahaye, et al. 2017. ``The
+Complementarity of Luminescence Dating Methods Illustrated on the
+Mousterian Sequence of the Roc de Marsal: A Series of
+Reindeer-Dominated, Quina Mousterian Layers Dated to MIS 3.''
+\emph{Cleaning up a Messy Mousterian: How to Describe and Interpret Late
+Middle Palaeolithic Chrono-Cultural Variability in Atlantic Europe} 433
+(March): 102--15.
+doi:\href{https://doi.org/10.1016/j.quaint.2016.02.063}{10.1016/j.quaint.2016.02.063}.
+
+\hypertarget{ref-guibert_importance_2009}{}
+Guibert, Pierre, Christelle Lahaye, and Françoise Bechtel. 2009. ``The
+Importance of U-Series Disequilibrium of Sediments in Luminescence
+Dating: A Case Study at the Roc de Marsal Cave (Dordogne, France).''
+\emph{Radiation Measurements} 44: 223--31.
+
+\hypertarget{ref-Hagen-Zanker2016}{}
+Hagen-Zanker, Alex. 2016. ``A computational framework for generalized
+moving windows and it sapplication to landscape pattern analysis.''
+\emph{International Journal of Applied Earth Observation and
+Geoinformation} 44. Elsevier B.V.: 205--16.
+doi:\href{https://doi.org/10.1016/j.jag.2015.09.010}{10.1016/j.jag.2015.09.010}.
+
+\hypertarget{ref-Henry2012}{}
+Henry, Donald. 2012. ``The palimpsest problem, hearth pattern analysis,
+and Middle Paleolithic site structure.'' \emph{Quaternary International}
+247 (1). Elsevier Ltd; INQUA: 246--66.
+doi:\href{https://doi.org/10.1016/j.quaint.2010.10.013}{10.1016/j.quaint.2010.10.013}.
+
+\hypertarget{ref-Henry2004}{}
+Henry, Donald O, Harold J Hietala, Arlene M Rosen, Yuri E Demidenko,
+Vitaliy I Usik, and Teresa L Armagan. 2004. ``Human Behavioral
+Organization in the Middle Paleolithic : Were Neanderthals Different ?''
+106 (1): 17--31.
+
+\hypertarget{ref-hodgkins_climate-mediated_2016}{}
+Hodgkins, Jamie, Curtis W Marean, Alain Turq, Dennis Sandgathe, Shannon
+J P McPherron, and Harold Dibble. 2016. ``Climate-Mediated Shifts in
+Neandertal Subsistence Behaviors at Pech de l'Azé IV and Roc de Marsal
+(Dordogne Valley, France).'' \emph{Journal of Human Evolution} 96
+(July): 1--18.
+doi:\href{https://doi.org/10.1016/j.jhevol.2016.03.009}{10.1016/j.jhevol.2016.03.009}.
+
+\hypertarget{ref-Holdaway2008}{}
+Holdaway, Simon, and Luann Wandsnider. 2008. \emph{Time in Archaeology:
+Time Perspectivism Revisited}. Salt Lake City: University of Utah Press.
+
+\hypertarget{ref-Isserman1977a}{}
+Isserman, Andrew M. 1977. ``The Location Quotient Approach to Estimating
+Regional Economic Impacts.'' \emph{Journal of the American Planning
+Association} 43 (1): 33--41.
+doi:\href{https://doi.org/10.1080/01944367708977758}{10.1080/01944367708977758}.
+
+\hypertarget{ref-Kroll1991}{}
+Kroll, Ellen M., and T. Douglas Price. 1991. \emph{The Interpretation of
+Archaeological Spatial Patterning}. New York: Springer.
+
+\hypertarget{ref-Leroi-Gourhan1984}{}
+Leroi-Gourhan, A. 1984. ``Pincevent: campement magdalenien de chasseurs
+de rennes, Guides archaeologiques de la France.'' \emph{Ministere de La
+Culture Direction Du Patrimoine Sous-Directon de L'archeologie, Paris}.
+
+\hypertarget{ref-lin_establishing_2015}{}
+Lin, Sam C, Shannon P McPherron, and Harold L Dibble. 2015.
+``Establishing Statistical Confidence in Cortex Ratios within and among
+Lithic Assemblages: A Case Study of the Middle Paleolithic of
+Southwestern France.'' \emph{Journal of Archaeological Science} 59
+(July): 89--109.
+doi:\href{https://doi.org/10.1016/j.jas.2015.04.004}{10.1016/j.jas.2015.04.004}.
+
+\hypertarget{ref-Lin2016}{}
+Lin, Sam C., Cornel M. Pop, Harold L. Dibble, Will Archer, Dawit Desta,
+Marcel Weiss, and Shannon P. McPherron. 2016. ``A Core Reduction
+Experiment Finds No Effect of Original Stone Size and Reduction
+Intensity on Flake Debris Size Distribution.'' \emph{American Antiquity}
+81 (03): 562--75.
+doi:\href{https://doi.org/10.1017/S0002731600004005}{10.1017/S0002731600004005}.
+
+\hypertarget{ref-Lloyd2006}{}
+Lloyd, C D. 2006. \emph{Local Models for Spatial Analysis}. London: CRC
+Press.
+
+\hypertarget{ref-Luncz2016}{}
+Luncz, Lydia V., Tomos Proffitt, Lars Kulik, Michael Haslam, and Roman
+M. Wittig. 2016. ``Distance-decay effect in stone tool transport by wild
+chimpanzees.'' \emph{Proceedings of the Royal Society B: Biological
+Sciences} 283 (1845): 20161607.
+doi:\href{https://doi.org/10.1098/rspb.2016.1607}{10.1098/rspb.2016.1607}.
+
+\hypertarget{ref-Machado2016}{}
+Machado, Jorge, Francisco J. Molina, Cristo M. Hernández, Antonio
+Tarriño, and Bertila Galván. 2016. ``Using lithic assemblage formation
+to approach Middle Palaeolithic settlement dynamics: El Salt
+Stratigraphic Unit X (Alicante, Spain).'' \emph{Archaeological and
+Anthropological Sciences}, 1--29.
+doi:\href{https://doi.org/10.1007/s12520-016-0318-z}{10.1007/s12520-016-0318-z}.
+
+\hypertarget{ref-Malinsky-Buller2011}{}
+Malinsky-Buller, Ariel, Erella Hovers, and Ofer Marder. 2011. ``Making
+time: 'Living floors', 'palimpsests' and site formation processes - A
+perspective from the open-air Lower Paleolithic site of Revadim Quarry,
+Israel.'' \emph{Journal of Anthropological Archaeology} 30 (2). Elsevier
+Inc.: 89--101.
+doi:\href{https://doi.org/10.1016/j.jaa.2010.11.002}{10.1016/j.jaa.2010.11.002}.
+
+\hypertarget{ref-Mallol2016}{}
+Mallol, Carolina, and Cristo Hernández. 2016. ``Advances in palimpsest
+dissection.'' \emph{Quaternary International} 417: 1--2.
+doi:\href{https://doi.org/10.1016/j.quaint.2016.09.021}{10.1016/j.quaint.2016.09.021}.
+
+\hypertarget{ref-Marwick2017}{}
+Marwick, Ben. 2017. ``Computational Reproducibility in Archaeological
+Research: Basic Principles and a Case Study of Their Implementation.''
+\emph{Journal of Archaeological Method and Theory} 24 (2). Journal of
+Archaeological Method; Theory: 424--50.
+doi:\href{https://doi.org/10.1007/s10816-015-9272-9}{10.1007/s10816-015-9272-9}.
+
+\hypertarget{ref-McCoy2001}{}
+McCoy, Jill, and Kevin Johnston. 2001. \emph{Using ArcGIS spatial
+analyst: GIS by ESRI}.
+
+\hypertarget{ref-McPherron2005a}{}
+McPherron, Shannon J.P., Harold L. Dibble, and Paul Goldberg. 2005.
+``Z.'' \emph{Geoarchaeology} 20 (3): 243--62.
+doi:\href{https://doi.org/10.1002/gea.20048}{10.1002/gea.20048}.
+
+\hypertarget{ref-mcpherron_additional_2018}{}
+McPherron, Shannon P. 2018. ``Additional Statistical and Graphical
+Methods for Analyzing Site Formation Processes Using Artifact
+Orientations.'' \emph{PLOS ONE} 13 (1): e0190195.
+doi:\href{https://doi.org/10.1371/journal.pone.0190195}{10.1371/journal.pone.0190195}.
+
+\hypertarget{ref-Mentzer2009}{}
+Mentzer, Susan M. 2009. ``Bone as a fuel source: the effects of initial
+fragment size distribution.'' In \emph{Gestion Des Combustibles Au
+Paleolithique et Au Mesolithique: Nouveaux Outiles, Nouvelles
+Interpretations. Uispp Proceedings of the Xv World Congress (Lisbon,
+4--9 September 2006)}. Oxford: Archaeopress.
+
+\hypertarget{ref-Merrill2010}{}
+Merrill, Michael, and Dwitght Read. 2010. ``A New Method Using Graph and
+Lattice Theory to Discover Spatial Cohesive Sets of Artifacts and Areas
+of Organized Activity in Archaeological Sites.'' \emph{American
+Antiquity} 75 (3): 419--51.
+
+\hypertarget{ref-Miller2007}{}
+Miller, John H, and Scott E Page. 2007. \emph{Complex Adaptive Systems:
+An Introduction to Computational Models of Social Life}. Vol. 27.
+Princeton: Princeton University Press.
+doi:\href{https://doi.org/10.1016/S1460-1567(08)10011-3}{10.1016/S1460-1567(08)10011-3}.
+
+\hypertarget{ref-Nielsen1991}{}
+Nielsen, Axel E. 1991. ``Trampling the Archaeological Record: An
+Experimental Study.'' \emph{American Antiquity} 56 (3): 483.
+doi:\href{https://doi.org/10.2307/280897}{10.2307/280897}.
+
+\hypertarget{ref-Oron2014}{}
+Oron, Maya, and Naama Goren-Inbar. 2014. ``Mousterian intra-site spatial
+patterning at quneitra, golan heights.'' \emph{Quaternary International}
+331. Elsevier Ltd; INQUA: 186--202.
+doi:\href{https://doi.org/10.1016/j.quaint.2013.04.013}{10.1016/j.quaint.2013.04.013}.
+
+\hypertarget{ref-OConnell1991}{}
+O'Connell, James, Kristen Hawkes, and Nicholas Blurton Jones. 1991.
+``Distribution of Refuse-Producing Activities at Hadza Residential Base
+Camps: Implications for Analyses of Archaeological Site Structure.'' In
+\emph{The Interpretation of Archaeological Site Patterning}, 61--75. New
+York: Springer.
+
+\hypertarget{ref-Pettitt1997a}{}
+Pettitt, P. B. 1997. ``High resolution neanderthals? interpreting middle
+palaeolithic intrasite spatial data.'' \emph{World Archaeology} 29 (2):
+208--24.
+doi:\href{https://doi.org/10.1080/00438243.1997.9980374}{10.1080/00438243.1997.9980374}.
+
+\hypertarget{ref-Reed2015}{}
+Reed, Denné, W. Andrew Barr, Shannon P. Mcpherron, René Bobe, Denis
+Geraads, Jonathan G. Wynn, and Zeresenay Alemseged. 2015. ``Digital data
+collection in paleoanthropology.'' \emph{Evolutionary Anthropology} 24
+(6): 238--49.
+doi:\href{https://doi.org/10.1002/evan.21466}{10.1002/evan.21466}.
+
+\hypertarget{ref-Reynard2018}{}
+Reynard, Jerome P, and Christopher S Henshilwood. 2018. ``Using
+Trampling Modification to Infer Occupational Intensity During the Still
+Bay at Blombos Cave , Southern Cape , South Africa.'' African
+Archaeological Review.
+
+\hypertarget{ref-Riel-Salvatore2013}{}
+Riel-Salvatore, Julien, Ingrid. C Ludeke, Fabio Negrino, and Brigitte.M
+Holt. 2013. ``A Spatial Analysis of the Late Mousterian Levels of Riparo
+Bombrini (Balzi Rossi, Italy).'' \emph{Canadian Journal of Archaeology}
+92: 70--92.
+
+\hypertarget{ref-RodaGilabert2016}{}
+Roda Gilabert, Xavier, Jorge Martínez-Moreno, and Rafael Mora Torcal.
+2016. ``Ground stone tools and spatial organization at the Mesolithic
+site of font del Ros (southeastern Pre-Pyrenees, Spain).'' \emph{Journal
+of Archaeological Science: Reports} 5. Elsevier Ltd: 209--24.
+doi:\href{https://doi.org/10.1016/j.jasrep.2015.11.023}{10.1016/j.jasrep.2015.11.023}.
+
+\hypertarget{ref-sandgathe_roc_2011}{}
+Sandgathe, Dennis M, Harold L Dibble, Paul Goldberg, and Shannon P
+McPherron. 2011. ``The Roc de Marsal Neandertal Child: A Reassessment of
+Its Status as a Deliberate Burial.'' \emph{Journal of Human Evolution}
+61 (3): 243--53.
+doi:\href{https://doi.org/10.1016/j.jhevol.2011.04.003}{10.1016/j.jhevol.2011.04.003}.
+
+\hypertarget{ref-sandgathe_role_2011}{}
+Sandgathe, Dennis M, Harold L Dibble, Paul Goldberg, Shannon P
+McPherron, Alain Turq, Laura Niven, and Jamie Hodgkins. 2011. ``On the
+Role of Fire in Neandertal Adaptations in Western Europe: Evidence from
+Pech de l'Azé and Roc de Marsal, France.'' \emph{PaleoAnthropology}
+2011: 216--42.
+
+\hypertarget{ref-sandgathe_introduction_2018}{}
+Sandgathe, Dennis M, Harold L Dibble, Shannon J P McPherron, and Paul
+Goldberg. 2018. ``Introduction.'' In \emph{The Middle Paleolithic Site
+of Pech de L'Azé Iv}, 1--19. Cave and Karst Systems of the World.
+Springer, Cham.
+doi:\href{https://doi.org/10.1007/978-3-319-57524-7_1}{10.1007/978-3-319-57524-7\_1}.
+
+\hypertarget{ref-Sandrine2005}{}
+Sandrine, Costamagno, Théry-Parisot Isabelle, Jean Philip Brugal, and
+Raphaele Guibert. 2005. ``Taphonomic consequences of the use of bones as
+fuel. Experimental data and archaeological applications.'' In
+\emph{Biosphere to Lithosphere, Proceedings of the 9th Conference of the
+International Council of Archaeozoology}, 51--62. Oxford: Oxbow books.
+
+\hypertarget{ref-Schelling1978}{}
+Schelling, Thomas C. 1978. \emph{Micromotives and Macrobehaviors}.
+Toronto: W. W. Norton \& Company.
+doi:\href{https://doi.org/10.2307/2989930}{10.2307/2989930}.
+
+\hypertarget{ref-Schiffer1975}{}
+Schiffer, Michael B. 1975. ``Archaeology as Behavioral Science.''
+\emph{American Anthropologist} 77 (4): 836--48.
+doi:\href{https://doi.org/10.1525/aa.1975.77.4.02a00060}{10.1525/aa.1975.77.4.02a00060}.
+
+\hypertarget{ref-Shott1998}{}
+Shott, Michael J. 1998. ``Lower Paleolithic Industries , Time , and the
+Meaning of Assemblage Variation.'' \emph{Time in Archaeology}, 46--60.
+
+\hypertarget{ref-Simms1990}{}
+Simms, Steven R, and Kathleen M Heath. 1990. ``Site Structure of the
+Orbit Inn : An Application of Ethnoarchaeology.'' \emph{Amerian
+Antiquity} 55 (4): 797--813.
+
+\hypertarget{ref-Stern1994}{}
+Stern, Nicola. 1994. ``The implications of time-averaging for
+reconstructing the land-use patterns of early tool-using hominids.''
+\emph{Journal of Human Evolution} 27 (1-3): 89--105.
+doi:\href{https://doi.org/10.1006/jhev.1994.1037}{10.1006/jhev.1994.1037}.
+
+\hypertarget{ref-Stern1993}{}
+Stern, Nicola, Henry T. Bunn, Ellen M. Kroll, Gary Haynes, Sally
+McBrearty, Jeanne Sept, and Pamela R. Willoughby. 1993. ``The Structure
+of the Lower Pleistocene Archaeological Record: A Case Study From the
+Koobi Fora Formation {[}and Comments and Reply{]}.'' \emph{Current
+Anthropology} 34 (3): 201--25.
+doi:\href{https://doi.org/10.1086/204164}{10.1086/204164}.
+
+\hypertarget{ref-Toth1985}{}
+Toth, Nicholas. 1985. ``The oldowan reassessed: A close look at early
+stone artifacts.'' \emph{Journal of Archaeological Science} 12 (2):
+101--20.
+doi:\href{https://doi.org/10.1016/0305-4403(85)90056-1}{10.1016/0305-4403(85)90056-1}.
+
+\hypertarget{ref-jaubert_mousterien_2008}{}
+Turq, A, H Dibble, J.-P. Faivre, P Goldberg, S J P McPherron, and D
+Sandgathe. 2008. ``Le Moustérien Récent Du Périgord Noir: Quoi De Neuf
+?'' In \emph{Les Sociétés Du Paléolithique Dans Un Grand Sud-Ouest de La
+France: Nouveaux Gisements, Nouveaux Résultats, Nouvelles Méthodes},
+edited by J Jaubert, J.-G. Bordes, and I Ortega, 83--94. Mémoire de la
+Société Préhistorique Française 48.
+
+\hypertarget{ref-turq_evolution_1979}{}
+Turq, Alain. 1979. ``L'evolution Du Mousterian de Type Quina Au Roc de
+Marsal et En Perigord. Modifications de l'équilibre Technique et
+Typologique.'' Mémoire., L'Ecole des Hautes Etudes en Sciences Sociales.
+
+\hypertarget{ref-turq_mousterien_1985}{}
+---------. 1985. ``Le Moustérien de Type Quina Du Roc de Marsal
+(Dordogne).'' \emph{Bulletin de La Société Préhistorique Française} 82
+(2): 46--51.
+
+\hypertarget{ref-Vaquero2012}{}
+Vaquero, Manuel, Susana Alonso, Sergio García-Catalán, Angélica
+García-Hernández, Bruno Gómez de Soler, David Rettig, and María Soto.
+2012. ``Temporal nature and recycling of Upper Paleolithic artifacts:
+The burned tools from the Molí del Salt site (Vimbodí i Poblet,
+northeastern Spain).'' \emph{Journal of Archaeological Science} 39 (8).
+Elsevier Ltd: 2785--96.
+doi:\href{https://doi.org/10.1016/j.jas.2012.04.024}{10.1016/j.jas.2012.04.024}.
+
+\hypertarget{ref-Vaquero2001}{}
+Vaquero, Manuel, and Ignasi Pastó. 2001. ``The Definition of Spatial
+Units in Middle Palaeolithic Sites: The Hearth-Related Assemblages.''
+\emph{Journal of Archaeological Science} 28 (11): 1209--20.
+doi:\href{https://doi.org/10.1006/jasc.2001.0656}{10.1006/jasc.2001.0656}.
+
+\hypertarget{ref-Vaquero2012a}{}
+Vaquero, Manuel, María Gema Chacón, Maria Dolores García-Antón, Bruno
+Gómez de Soler, Kenneth Martínez, and Felipe Cuartero. 2012. ``Time and
+space in the formation of lithic assemblages: The example of Abric
+Romaní Level J.'' \emph{Quaternary International} 247 (1). Elsevier Ltd;
+INQUA: 162--81.
+doi:\href{https://doi.org/10.1016/j.quaint.2010.12.015}{10.1016/j.quaint.2010.12.015}.
+
+\hypertarget{ref-Wandsnider2008}{}
+Wandsnider, LuAnn. 2008. ``Time-Averaged Deposits and Multitemporal
+Processes in the Wyoming Basin, Intermontane North America: A
+Preliminary Consideration of Land Tenure in Terms of Occupation
+Frequency and Integration.'' \emph{Time in Archaeology: Time
+Perspectivism Revisited}, 61--93.
+
+\hypertarget{ref-Wheatley}{}
+Wheatley, David, and Mark Gillings. 2013. \emph{Spatial technology and
+archaeology: the archaeological applications of GIS.} New York: CRC
+Press.
+
+\hypertarget{ref-Yellen1977}{}
+Yellen, John E. 1977. \emph{Archaeological approaches to the present :
+models for reconstructing the past}. New York: Academic Press.
+
+\hypertarget{ref-Yvorra2003}{}
+Yvorra, Pascale. 2003. ``The management of space in a Palaeolithic rock
+shelter: Defining activity areas by spatial analysis.'' \emph{Antiquity}
+77 (296): 336--44.
+doi:\href{https://doi.org/10.1017/S0003598X00092310}{10.1017/S0003598X00092310}.
+
+\bibliographystyle{spbasic}
+\bibliography{RDM\_BIB.bib}
+
+\end{document}

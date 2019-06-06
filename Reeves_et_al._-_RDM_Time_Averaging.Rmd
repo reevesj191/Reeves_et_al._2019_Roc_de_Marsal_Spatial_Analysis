@@ -22,7 +22,7 @@ authors:
   address: Department of Archaeology and Human Evolutionary Studies Program, Simon Fraser University, Vancouver, CANADA
   email: dms@sfu.ca
 - name: Alain Turq
-  address: None
+  address: Musée national de Préhistoire, Les Eyzies-de-Tayac, France, CNRS, University of Bordeaux, MCC, PACEA UMR 5199, Pessac, Musée de Sauveterre-la-Lémance, France
   email: alain.turq@orange.fr
 
 date: "`r Sys.Date()`"
@@ -39,6 +39,7 @@ header-includes:
 - \journalname{Anthropological and Archaeological Science}
 keywords:
 - time-averaging
+- spatial analysis
 - Paleolithic
 - palimpsets
 - Roc de Marsal
@@ -110,6 +111,7 @@ theme_dens <- theme(
         legend.position = c(.75, .75),
         legend.direction = "vertical",
         legend.background = element_blank(),
+        axis.text = element_text(color = "black", size = 6),
         axis.text.x = element_text(color = "black", angle = 300, vjust = .3, size = 6),
         axis.title.x = element_blank(),
         plot.title = element_text(size = 10,
@@ -121,8 +123,19 @@ theme_plots <- theme_dens +
         legend.position = c(.5, -.125),
         legend.direction = "horizontal",
         plot.margin = unit(c(0,0,1,0), "cm"),
-        axis.text = element_text(color = "black", size = 6),
+        strip.text.x = element_text(size = 10, face = 'bold'),
         axis.text.x = element_text(angle = 300, vjust = .3))
+
+additional_settings = list(geom_point(size = .3, show.legend = TRUE),
+                            geom_polygon(data = outline.df, aes(x = long, y = lat), color = "black", fill = NA, inherit.aes = FALSE),
+                            geom_segment(aes(x = 1017, y = 1009.45, xend = 1019, yend = 1010.1), color = 'grey25', linetype = 'dashed'),
+                            coord_equal(),
+                            scale_x_continuous(breaks = seq(from = 1016, to = 1020, by = 1), limits = c(1016, 1020)),
+                            scale_y_continuous(breaks = seq(from = 1005, to = 1018, by = 2), limits = c(1005, 1018)),
+                            theme(axis.text.x = element_text(color = "black", angle = 300, vjust = .3, size = 6),
+                                  axis.title.y = element_blank(),
+                                  legend.text = element_text(size = 6)) ) 
+
 
 colors <- c("#E69F00",
             "#56B4E9",
@@ -159,7 +172,7 @@ plot_local_moran = function(spatial_data, outline.df, colors, plot_theme) {
 
   The spatial structure of stone artifacts, fauna, and other archaeological features (e.g. hearths) provide a unique window into how past people conceptualized and organized their behaviors in space [@Aldeias2012; @Alperson-Afil2008; @Alperson-Afil2017a;  @Bamforth2005; @Clark2016; @Henry2004; @Pettitt1997a; @Vaquero2001; @Yellen1977]. In turn, these patterns ultimately reflect the ways in which humans interacted with their physical environment. Intra-site spatial analyses thus provide the opportunity to gain important insights into the behavior of Paleolithic peoples [@Kroll1991; @Yvorra2003; @Henry2004; @Henry2012; @Oron2014; @Mallol2016; @Gopher2016]. Closely tied with the advent of processual archaeology in the 1960s, spatial analyses utilized the material traces of modern forager activity to interpret distributions of artifacts from archaeological sites in behavioral terms [e.g @Yellen1977; @Binford1978; @Gould1987; @Simms1990; @OConnell1991; @Audouze1997]. This approach focuses on identifying discrete "zones" of activities whose arrangement in space provide insight into the spatial organization of past people's behavior [@Clark2017]. Since the 1960s, spatial analysis has seen rapid methodological improvements in both data collection and analysis. Plumb bobs and meter-sticks have given way to devices capable of quickly and accurately mapping whole archaeological assemblages in three-dimensional space [@Reed2015; @Wheatley; @McPherron2005a], and the increased usability and accessibility of geographic information systems in the last years provide a multitude of new tools by which spatial archaeological data can be visualized and analyzed [@Abe2010; @Benito-calvo2011; @Wheatley; @Machado2016]. Simple distribution maps have been replaced with a variety of point pattern analyses, geospatial statistics, and multivariate analysis [@Alperson-Afil2009; @Merrill2010; @Yvorra2003].
 
-  Spatial analysis in Paleolithic studies has, however, slowed in recent decades [@Clark2016; @Clark2017]. Despite the fact that the sophistication and the number of both documentation and analytical tools have never been greater, archaeologists still grapple with some fundamental issues regarding the formation of the archaeological record. Although ethnographic data has been a primary analog for interpreting the archaeological record, these data typically represent a time-scale of hours to months. Thus, to match this, high temporal resolution is often considered a requirement of intra-site spatial analyses [@Alperson-Afil2017a]. In contrast, aside from a small minority of possible exceptions [e.g. @Leroi-Gourhan1984; @Audouze1997; @Alperson-Afil2009], the majority of Paleolithic sites are palimpsests formed from sequentially overprinted occupations spanning hundreds, or sometimes, thousands of years [@Dibble1997; @Bailey2009; @Henry2012; @Vaquero2012a]. Given the destructive nature of time-averaging on signatures of singular behaviors [@Stern1993; @Stern1994; @Yellen1977], much research has been devoted to obtaining high-resolution data from aggregate assemblages [@Mallol2016; @Vaquero2001]. Protocols involving a variety of sophisticated excavation and analytical methods including _décapage_, high-resolution 3D mapping, refitting, and microbiology have been implemented in an attempt to extract individual occupations from palimpsests [e.g. @Leroi-Gourhan1984; @Bailey2007; @Goldberg2010; @Aldeias2012; @Henry2012; @Bisson2014; @Mallol2016]. The application of these methods has been met with variable success. It is still unclear what constitutes a brief instance of activity or an episode of occupation [@Vaquero2012; @Mallol2016], and when archaeological assemblages or features can be isolated in time, determining their synchrony with the rest of the assemblage remains problematic [@Aldeias2012; @Mallol2016]. Even thin assemblages from open-air sites, where the structure of the archaeological assemblage appears to reflect an isochronous event, can still represent several episodes of occupation spread across considerable time [@Bailey2007; @Bargallo2016; @RodaGilabert2016]. Rather than extract individual activities from variably time-averaged deposits, spatial methods have further exposed the underlying complexity of the formation of the archaeological record. From the perspective of the activities facies model, it seems as if palimpsests are not amenable for understanding human behavior at this level. Yet, palimpsest sites are far more abundant than the rare the examples when brief moments in time are preserved and for this reason should remain the subject of archaeological investigation.     
+  Spatial analysis in Paleolithic studies has, however, slowed in recent decades [@Clark2016; @Clark2017]. Despite the fact that the sophistication and the number of both documentation and analytical tools have never been greater, archaeologists still grapple with some fundamental issues regarding the formation of the archaeological record. Although ethnographic data has been a primary analog for interpreting the archaeological record, these data typically represent a time-scale of hours to months. Thus, to match this, high temporal resolution is often considered a requirement of intra-site spatial analyses [@Alperson-Afil2017a]. In contrast, aside from a small minority of possible exceptions [e.g. @Leroi-Gourhan1984; @Audouze1997; @Alperson-Afil2009], the majority of Paleolithic sites are palimpsests formed from sequentially overprinted occupations spanning hundreds, or sometimes, thousands of years [@Dibble1997; @Bailey2009; @Henry2012; @Vaquero2012a]. Given the destructive nature of time-averaging on signatures of singular behaviors [@Stern1993; @Stern1994; @Yellen1977], much research has been devoted to obtaining high-resolution data from aggregate assemblages [@Mallol2016; @Vaquero2001]. Protocols involving a variety of sophisticated excavation and analytical methods including _décapage_, high-resolution 3D mapping, refitting, and microbiology have been implemented in an attempt to extract individual occupations from palimpsests [e.g. @Leroi-Gourhan1984; @Bailey2007; @Goldberg2010; @Aldeias2012; @Henry2012; @Bisson2014; @Mallol2016]. The application of these methods has been met with variable success. It is still unclear what constitutes a brief instance of activity or an episode of occupation [@Vaquero2012; @Mallol2016], and when archaeological assemblages or features can be isolated in time, determining their synchrony with the rest of the assemblage remains problematic [@Aldeias2012; @Mallol2016]. Even thin assemblages from open-air sites, where the structure of the archaeological assemblage appears to reflect an isochronous event, can still represent several episodes of occupation spread across considerable time [@Bailey2007; @Bargallo2016; @RodaGilabert2016]. Rather than extract individual activities from variably time-averaged deposits, spatial methods have further exposed the underlying complexity of the formation of the archaeological record. From the perspective of the activities facies model, it seems as if palimpsests are not amenable for understanding human behavior at this level. Yet, palimpsest sites are far more abundant than the rare examples when brief moments in time are preserved and for this reason should remain the subject of archaeological investigation.     
 
   This argument is not a recent realization. In response to -@Schiffer1975,  -@Binford1981a argued that researchers should not shoehorn the archaeological record into the questions we ask but rather tailor our questions to match the nature of the record itself. Since the 1970s, archaeologists have also suggested that there are merits to understanding behavior in time-averaged datasets [@Foley1981a; @Ebert1992; @Pettitt1997a; @Bamforth2005; @Holdaway2008; @Bailey2009; @Clark2017]. Palimpsests are the result of repeated occupations, often over multiple generations, and thus afford the opportunity to investigate processes that structure human behavior more in the long-term [@Foley1981a; @Bailey2007; @Wandsnider2008]. The behavioral signatures preserved in these temporally coarse assemblages likely tell us something about the behavioral repertoire of populations or even taxa [@Pettitt1997a]. Spatial patterning on this coarsened scale no longer reflects individual activities but instead shows how broader, more temporally stable (e.g. the layout of a cave or rock shelter), external factors structured behaviors. Patterns at this scale potentially document the interaction between past populations and their physical environment [@Brooks1987; @Bamforth2005]. In this regard, caves are interesting because they impose physical constraints on how space can be used. For instance, the dripline defines an interior, sheltered portion of the space versus the exterior, open portion [@Riel-Salvatore2013]. The movement of air and ventilation may have influenced the placement of fires so as to avoid filling the space with smoke or burning the fire too quickly. Subtle factors such as differences in lighting or temperature across a cave may have influenced the structure of behavior. At a more general level, when locations like caves are subjected to repeated occupation over long periods of time, the residues of previous occupations may structure subsequent ones [@Bailey2009; @Malinsky-Buller2011].  If these factors structured behavior spatially, then it is likely that artifact discard patterns may have been structured as well. Few studies have applied intra-site spatial analyses to palimpsests as a whole, but previous research has yielded interesting results. Bamforth et al. [-@Bamforth2005] and -@Bailey2009, for instance, were able to demonstrate the repeated discard of artifacts in the same locations over extended periods of time. However, though these studies suggest that palimpsests are structured (to some degree), further assessments of this notion may require new methods that consider the behavioral inputs and site formation processes under which palimpsests form. 
 
@@ -187,9 +200,9 @@ if (!tiff_figures) {
 
 ```
 
-**Figure 1. The cave of Roc de Marsal (upper left), a map showing the extent of the cave, the previous excavations, and the most recent excavations (right), some of the stacked hearth features in Layer 9 (center left), and a panoramic (distorted) view of the west profile towards the end of the new excavations.  The main area analyzed in here is shown in this latter photo (primarily E18 to K16).**
+**Figure 1. The cave of Roc de Marsal (upper left), a map showing the extent of the cave, the previous excavations, and the most recent excavations (right), some of the stacked hearth features in Layer 9 (center left), and a panoramic (distorted) view of the west profile towards the end of the new excavations.  The main area analyzed here is shown in this latter photo (primarily E18 to K16).**
 
-  The new excavations recognized 13 layers; however, the main artifact bearing layers are, from bottom to top, 9 through 2.  The archaeology of all of these layers is Middle Paleolithic [@turq_mousterien_1985; @jaubert_mousterien_2008; @sandgathe_roc_2011; @Aldeias2012]. The base (Layers 9-5) of the sequence is characterized by Levallois technology.  Layers 4-2 represent a switch to Quina techniques of blank production.  Denticulates are numerous in Layers 9-7, and the proportion of scrapers increases throughout the sequence.  Layers 9-7 are characterized mostly by red deer and roe deer [@hodgkins_climate-mediated_2016; @castel_neandertal_2017].  Reindeer are present in Layers 9-8 and increase in Layer 7 and above.  Bovines and horse are also present.  By Layer 5 times reindeer dominate the assemblage, accounting for approximately 70% of the NISP, with the rest consisting mainly of horse and bovines.  This trend continues in Layer 4 where reindeer reach over 80% of the assemblage NISP.  Layer 3 shows a more diverse faunal spectrum (though sample sizes are small), and Layer 2 shows a return to the Layer 4 pattern.  The sequence has been intensively dated using a variety of thermoluminescence and optically stimulated luminescence methods [@guibert_importance_2009; @guerin_multi-method_2012; @guerin_complementarity_2017].  The different dating techniques provide somewhat different results, but @guerin_complementarity_2017 use their most reliable set of ages to place the base of the sequence in MIS 4 and that the top of the sequence in MIS 3.  In their view, the transition between MIS 4 and 3 likely occurs sometime during the deposition of Layers 6 and 5 .  How to reconcile this age model with sharply contrasting paleoenvironmental proxies coming from geological observations and the faunal spectrum is as yet unresolved.  
+  The new excavations recognized 13 layers; however, the main artifact bearing layers are, from bottom to top, 9 through 2.  The archaeology of all of these layers is Middle Paleolithic [@turq_mousterien_1985; @jaubert_mousterien_2008; @sandgathe_roc_2011; @Aldeias2012]. The base (Layers 9-5) of the sequence is characterized by Levallois technology.  Layers 4-2 represent a switch to Quina techniques of blank production.  Denticulates are numerous in Layers 9-7, and the proportion of scrapers increases throughout the sequence.  Layers 9-7 are characterized mostly by red deer and roe deer [@hodgkins_climate-mediated_2016; @castel_neandertal_2017].  Reindeer are present in Layers 9-8 and increase in Layer 7 and above.  Bovines and horse are also present.  By Layer 5 times reindeer dominate the assemblage, accounting for approximately 70% of the NISP, with the rest consisting mainly of horse and bovines.  This trend continues in Layer 4 where reindeer reach over 80% of the assemblage NISP.  Layer 3 shows a more diverse faunal spectrum (though sample sizes are small), and Layer 2 shows a return to the Layer 4 pattern.  The sequence has been intensively dated using a variety of thermoluminescence and optically stimulated luminescence methods [@guibert_importance_2009; @guerin_multi-method_2012; @guerin_complementarity_2017].  The different dating techniques provide somewhat different results, but @guerin_complementarity_2017 use their most reliable set of ages to place the base of the sequence in MIS 4 and the top of the sequence in MIS 3.  In their view, the transition between MIS 4 and 3 likely occurs sometime during the deposition of Layers 6 and 5.  How to reconcile this age model with sharply contrasting paleoenvironmental proxies coming from geological observations and the faunal spectrum is as yet unresolved.  
 
 ```{r counts}
 
@@ -225,9 +238,9 @@ kable(dataset, caption = 'Summary of liters excavated and lithic counts for the 
 
 **Methods: Neighborhood Analysis**
 
-  This study employs a neighbor analysis to characterize spatial variation in artifact discard patterns across each layer. Moving windows or neighborhood analyses are used in geographic information science to document local variation in a given variable [@Lloyd2006]. Neighborhoods of a defined two-dimensional size and shape are drawn over the area of interest. Observations located within each neighborhood are summarized according to a given statistic [@Hagen-Zanker2016]. The end result produces a map where each data point represents the calculation of that statistic for its neighborhood. Often times such techniques produce smoothed rasterized representation of the moving window result but they can also be point based. Point density functions are a common application of this type of analysis in archaeology and have been applied at a variety of different scales [@Baxter1997; @Abe2010; @Alperson-Afil2010a; @Aldeias2012; @Blasco2016].
+  This study employs a neighbor analysis to characterize spatial variation in artifact discard patterns across each layer. Moving windows or neighborhood analyses are used in geographic information science to document local variation in a given variable [@Lloyd2006]. Neighborhoods of a defined two-dimensional size and shape are drawn over the area of interest. Observations located within each neighborhood are summarized according to a given statistic [@Hagen-Zanker2016]. The end result produces a map where each data point represents the calculation of that statistic for its neighborhood. Often times such techniques produce a smoothed rasterized representation of the moving window result but they can also be point based. Point density functions are a common application of this type of analysis in archaeology and have been applied at a variety of different scales [@Baxter1997; @Abe2010; @Alperson-Afil2010a; @Aldeias2012; @Blasco2016].
 
-  Here we use a circular window of 30 cm in radius as our neighborhood and calculate the local variation of each artifact metric (see the calculation of metrics below) based on this sample. This window size was determined largely by the spatial scope of the study area. Too small a window risks introducing local noise into the result, and too large a window risks aggregating meaningful local variation into noise. While GIS software packages offer a variety of moving window tools (e.g. Point density, Kernel density, Optimized hotspot analyses) [@McCoy2001], our study requires the flexibility to calculate various artifact-metrics. Thus we custom developed the moving window analysis used here in R with the "rgeos" package specifically for the purpose of calculating each metric. We have included the raw data, source code, and the markdown document used to create this publication (cf. @clarkson_archaeology_2015; @Marwick2017; @mcpherron_additional_2018).
+  Here we use a circular window of 30 cm in radius as our neighborhood and calculate the local variation of each artifact metric (see the calculation of metrics below) based on this sample. This window size was determined largely by the spatial scope of the study area. Too small a window risks introducing local noise into the result, and too large a window risks aggregating meaningful local variation into noise. While GIS software packages offer a variety of moving window tools (e.g. Point density, Kernel density, Optimized hotspot analyses) [@McCoy2001], our study requires the flexibility to calculate various artifact-metrics. Thus we custom developed the moving window analysis used here in R with the rgeos package specifically for the purpose of calculating each metric [@bivandRgeosInterfaceGeometry2018; @rcoreteamLanguageEnvironmentStatistical2018]. We have included the raw data, source code, and the markdown document used to create this publication (cf. @clarkson_archaeology_2015; @Marwick2017; @mcpherron_additional_2018).
 
 **Methods: Calculation of Metrics**
 
@@ -235,7 +248,7 @@ kable(dataset, caption = 'Summary of liters excavated and lithic counts for the 
 
   _Artifact density_ for each neighborhood was calculated as the number of stone artifacts. Though density measurements are potentially biased by breakage, this describes the general distribution of artifacts across each layer and, therefore, provides a baseline comparison for the other indices.
 
-  _Complete flake weight_ is calculated as the median weight of complete flakes within a neighborhood. The median flake weight in each neighborhood (See moving window section) is then divided by the median flake weight of the entire layer. This allows the values to be standardized such that flake weight is comparable across layers. This is a common practice in spatial analysis, as it allows one to find local variation in a metric given its global value [@Isserman1977a]. Values associated with this metric center on 1. Values above 1 mean that the median flake weight in the window is greater than median flake weight of the whole layer and values below 1 mean the opposite. Our expectation for this measure is that areas of tool production (i.e. retouch) and rejuvenation might have smaller flakes, though the sensitivity of this measure for these behaviors is tempered in this case by our 2.5 cm size cut-off.
+  _Complete flake weight_ is calculated as the median weight of complete flakes within a neighborhood. The median flake weight in each neighborhood (See moving window section) is then divided by the median flake weight of the entire layer. This allows the values to be standardized such that flake weight is comparable across layers. This is a common practice in spatial analysis, as it allows one to find local variation in a metric given its global value [@Isserman1977a]. Values associated with this metric center on 1. Values above 1 mean that the median flake weight in the window is greater than the median flake weight of the whole layer and values below 1 mean the opposite. Our expectation for this measure is that areas of tool production (i.e. retouch) and rejuvenation might have smaller flakes, though the sensitivity of this measure for these behaviors is tempered in this case by our 2.5 cm size cut-off.
 
   _Cortex to mass ratio_ can act as a proxy for reduction stage under the assumption that greater proportions of the cortex are removed at early stages of the production sequence [@Oron2014]; areas associated with early-stage reduction will have higher cortex to mass ratios where middle and later stages will have less [@Toth1985]. This assumption, however, is in part impacted by the technology (e.g. Levallois versus Quina techniques for blank production) and by lithic transport patterns (see below), neither of which was constant throughout the sequence. Some caution is then required when considering differences between layers. To calculate this ratio, for each artifact, the relative proportion of cortex was previously measured using intervals and here converted to a decimal based on the interval mid-point. Surface area is estimated as a two-dimensional rectangular surface by multiplying the artifact length by width [@Douglass2015]. Estimates of the cortical surface area are then derived by multiplying the proportion of cortex by the surface area. Cortical surface area estimates are then divided by mass to control for the influence of size on the cortical surface. Aside from reduction intensity considerations, the movement of already worked materials into and out of the site will affect the overall amount of cortex in an assemblage. Based on the cortex ratio [@dibble_measurement_2005], it has already been established [@lin_establishing_2015] that in Layers 5 and 4 cortex is under-represented, whereas in Layers 9-7 the expected amount of cortex is present.  Nevertheless, here we can examine how the cortex that is present is distributed spatially.
 
@@ -243,17 +256,17 @@ kable(dataset, caption = 'Summary of liters excavated and lithic counts for the 
     
   _The burning ratio_ is designed to investigate the spatial structure of burned artifacts as a proxy for the placement of fires. Fire placement within the cave was likely structured and fires may have in turn structured where behaviors took place  [e.g @Galanidou1997; @Pettitt1997a; @Gopher2016], thus understanding whether there is structure in the spatial distribution of burned artifacts may provide insight into the organization of behaviors in space. Note that we are not suggesting that artifacts were intentionally heated, rather they are incidentally heated when fires are constructed on artifact bearing deposits or tossed directly into an active fire [@Aldeias2016]. Thus if there is consistency in where burning events occurred, then there should also be structure in the burned artifacts. However, burning increases breakage which then over-represents burned lithics relative to other lithics within any given neighborhood. Rather than computing the relative frequency of burned lithics to all other lithics, we account for breakage by only considering complete and proximal flakes in our estimation. The ratio of burned complete flakes and burned proximal flakes to all complete and proximal flakes was calculated for each neighborhood. 
 
-  _The scraper to flake ratio_ and _core to flake ratio_ are designed to characterize the discard of cores and scrapers relative to flakes across each layer. Previous studies have argued that artifact types such as scrapers and cores are also structured around combustion features [@Pettitt1997a], and so we may expect that locations subject to continuous burning over long time scales may also structure the discard patterns of scrapers and cores. The distribution of scrapers is calculated as the relative frequency of scrapers to the number of proximal and complete flakes. As with scrapers, the spatial distribution of cores is calculated as the frequency of cores relative to the number of proximal and complete flakes (core to flake ratio). The inclusion of complete and proximal flakes only is, again, to account for potential distortion of values due to breakage introduced by taphonomic process. 
+  _The scraper to flake ratio_ and _core to flake ratio_ are designed to characterize the discard of cores and scrapers relative to flakes across each layer. Previous studies have argued that artifact types such as scrapers and cores are also structured around combustion features [@Pettitt1997a], and so we may expect that locations subject to continuous burning over long time scales may also structure the discard patterns of scrapers and cores. The distribution of scrapers is calculated as the relative frequency of scrapers to the number of proximal and complete flakes. As with scrapers, the spatial distribution of cores is calculated as the frequency of cores relative to the number of proximal and complete flakes (core to flake ratio). The inclusion of complete and proximal flakes only is, again, to account for potential distortion of values due to breakage introduced by taphonomic processes. 
 
   _Local Indicators of Spatial Association_
 
   The neighbor analysis allows us to observe spatial variation in the calculated metrics. However, it provides no way to quantitatively characterize the meaningfulness of the variation we observe in each layer. To address this, a Local Moran's I test is applied to the results of the moving window analysis [@Anselin1995]. Global Moran's I then characterizes the spatial structure of a given attribute as non-random clustered, non-random even, or random [@Bivand2013]. This is done using a neighborhood analysis to analyze first local relationships between values observed at a specific point and its neighbors. The global structure of a distribution of values is then calculated based on these measurements. Since Moran's I requires an understanding of spatial relationships at a local scale, it can be broken down into its individual parts. Statistical tests can then be applied to each of these parts to determine the statistical significance of clustering or dispersion at the local scale [@Anselin1995; @Lloyd2006; @Bivand2013]. The significance of clustering around each point in these analyses can be plotted in space. Using this method, the statistical meaningfulness of spatial variation in each metric is detected as statistically non-random "clusters" on the local scale. Results of the Local Moran's I test can then be used to demarcate areas of statistically significant clusters of high and low values and outliers [@Lloyd2006]. Outliers are defined as statistically significant clusters of high values that are surrounded by clusters of low values or vice versa. This technique is beneficial as it provides an objective determination of when spatial variation in each calculated metric is the result of non-random processes. In doing so, this provides a way to better discern between spurious variation and systematic structuring of artifact discard patterns.
 
-  This study uses the spdep package in R to implement Local Moran's I methods as developed by Anselin -@Anselin1995. Clusters of high and low values were determined with 95% confidence. Hereafter, statistically significant clusters of high values are referred to as high clusters and statistically significant clusters of low values will be referred to as low clusters. Outliers, where non-random high values are surrounded by low values or the opposite, are referred to as high-outliers and low-outliers respectively. An additional note of importance is that both Local and Global Moran's I are scale-dependent and require the definition of a neighborhood size. Since the results of this test are directly influenced by the size of the neighborhood used, additional measures must be taken to determine the most appropriate window size (this window is independent of the moving window used to calculate the above metrics at each artifact location). We used a correlogram to estimate the most appropriate window size for each metric. This approach involves calculating Global Moran's I at a series of incrementally increasing neighborhood sizes [@Bivand2013]. The results are then plotted against neighborhood size. The neighborhood size exhibiting the greatest autocorrelation (Moran's I) was then chosen as the window size for the Local Moran's I test (see SOM). Clusters of statistically significant high and low values were then used to further explore the significance of the spatial variation of each metric.
+  This study uses the spdep package in R to implement Local Moran's I methods as developed by @Anselin1995. Clusters of high and low values were determined with 95% confidence. Hereafter, statistically significant clusters of high values are referred to as high clusters and statistically significant clusters of low values will be referred to as low clusters. Outliers, where non-random high values are surrounded by low values or the opposite, are referred to as high-outliers and low-outliers respectively. An additional note of importance is that both Local and Global Moran's I are scale-dependent and require the definition of a neighborhood size. Since the results of this test are directly influenced by the size of the neighborhood used, additional measures must be taken to determine the most appropriate window size (this window is independent of the moving window used to calculate the above metrics at each artifact location). We used a correlogram to estimate the most appropriate window size for each metric. This approach involves calculating Global Moran's I at a series of incrementally increasing neighborhood sizes [@Bivand2013]. The results are then plotted against neighborhood size. The neighborhood size exhibiting the greatest autocorrelation (Moran's I) was then chosen as the window size for the Local Moran's I test (see SOM). Clusters of statistically significant high and low values were then used to further explore the significance of the spatial variation of each metric.
 
 _Interpretative Framework_
 
-  One large risk of the approach taken here is that, given the number of indices (metrics) examined and the nature of the spatial statistics applied to them, any one layer from any site is likely to produce a pattern of some kind. While *a priori* we expect caves to produce patterns for the reasons outlined in the introduction, interpreting these patterns in the absence of any specific *a priori* predictions or expectations about what patterns, in particular, are expected risks falling into the Texas sharpshooter fallacy wherein patterns are searched for, found and only then are explanations built to account for them. To help mitigate this problem, we look for repetition in the patterning between layers.  In this framework, each layer is viewed as an independently drawn sample of the accumulation of behaviors preserved at the site with the one (mostly) constant being the physical configuration of the cave.  Patterning that repeats across these independent samples is then more robust and likewise are any explanations for this patterning.  The extent to which layers actually represent independent samples can be challenged on the basis, for instances, that visible traces of previous activities (in the underlying layer) may continue to structure behavior in the new layer just as we suspect happens within a layer.  We see no clear way of addressing this issue in a single cave sequence.  Clearly, strong behavioral inferences require consistent patterning in multiple sites.
+  One large risk of the approach taken here is that, given the number of indices (metrics) examined and the nature of the spatial statistics applied to them, any one layer from any site is likely to produce a pattern of some kind. While *a priori* we expect caves to produce patterns for the reasons outlined in the introduction, interpreting these patterns in the absence of any specific *a priori* predictions or expectations about what patterns, in particular, are expected risks falling into the Texas sharpshooter fallacy wherein patterns are searched for, found and only then are explanations built to account for them. To help mitigate this problem, we look for repetition in the patterning between layers.  In this framework, each layer is viewed as an independently drawn sample of the accumulation of behaviors preserved at the site with the one (mostly) constant being the physical configuration of the cave.  Patterning that repeats across these independent samples is then more robust and likewise are any explanations for this patterning.  The extent to which layers actually represent independent samples can be challenged on the basis, for instance, that visible traces of previous activities (in the underlying layer) may continue to structure behavior in the new layer just as we suspect happens within a layer.  We see no clear way of addressing this issue in a single cave sequence.  Clearly, strong behavioral inferences require consistent patterning in multiple sites.
 
 
 ```{r figure2_density, fig.height=4.5, fig.width=6.5, dpi=600}
@@ -261,36 +274,21 @@ _Interpretative Framework_
 plots = list()
 
 for (layer in rev(rdm_layers)) {
-  print(layer)
   mindens <- 0
-  maxdens <- round(max(lithics[lithics$LEVEL == layer,]$density) + 1)
+  maxdens <- ceiling(max(lithics[lithics$LEVEL == layer,]$density))
   xbreaks <- seq(from = mindens, to = maxdens, by = maxdens / 4)
+  
   plots[[layer]] <- ggplot(lithics[lithics$LEVEL == layer,], aes(x = X, y = Y, color = density)) +
-    geom_polygon(data = outline.df,
-                 aes(x = long, y = lat),
-                 color = "black",
-                 fill = NA,
-                 inherit.aes = FALSE) +
-    geom_point(size = .3, show.legend = TRUE) +
     scale_color_distiller(type =  "div",
                           palette = "RdYlBu",
-                          limits = c(round(min(lithics[lithics$LEVEL == layer,]$density) - 1),
-                                     round(max(lithics[lithics$LEVEL == layer,]$density) + 1)),
+                          limits = c(floor(min(lithics[lithics$LEVEL == layer,]$density)),
+                                     ceiling(max(lithics[lithics$LEVEL == layer,]$density))),
                           breaks = round(xbreaks),
                           guide = guide_colourbar(title = "",
                                                   nbin = 5,
                                                   ticks = TRUE)) +
-    geom_segment(aes(x = 1017, y = 1009.45, xend = 1019, yend = 1010.1),
-                 color = 'grey25', linetype = 'dashed') +
-    theme_dens +
-    coord_equal() +
-    scale_x_continuous(breaks = seq(from = 1016, to = 1020, by = 1),
-                       limits = c(1016, 1020)) +
-    scale_y_continuous(breaks = seq(from = 1005, to = 1018, by = 2),
-               limits = c(1005, 1018)) +
-    theme(axis.text.x = element_text(color = "black", angle = 300, vjust = .3, size = 6),
-          axis.title.y = element_blank()) +
-    theme(plot.margin = unit(c(0,.1,0,0), "cm")) +
+    theme_dens + theme(plot.margin = unit(c(0, .1, 0, 0), "cm")) +
+    additional_settings + 
     ggtitle(paste("Layer", layer))
 
     if (layer!=9) {
@@ -302,13 +300,13 @@ for (layer in rev(rdm_layers)) {
 
 if (tiff_figures) tiff('Figure_02.tif', res = 600, width = 6.5, height = 4.5, units = 'in')
 
-grid.arrange(grobs = plots, ncol =5)
+grid.arrange(grobs = plots, ncol = 5)
 
 if (tiff_figures) graphics.off()
 
 ```
 
-**Figure 2. The spatial distribution of lithic artifact density across each layer. Deep red colors indicate areas with high densities of artifacts whereas lighter red values grading to blue indicate lower artifact densities.  The coloring for each layer is scaled separately, and the values are per 30 cm^2^.  The dashed line represents the current dripline (see also Figure 1).**
+**Figure 2. The spatial distribution of lithic artifact density across each layer. Deep red colors indicate areas with high densities of artifacts whereas lighter red values grading to blue indicate lower artifact densities.  The coloring for each layer is scaled separately, and the values are the values are for a neighborhood with a 30 cm radius.  The dashed line represents the current dripline (see also Figure 1).**
 
 **Results: Inter-level comparisons of Spatial Organization**
 
@@ -329,12 +327,10 @@ plot_local_moran(lithics %>%
 
 if (tiff_figures) graphics.off()
 
-lmres <- lm(lithics$flake.weight~lithics$Y)
-lmres <- summary(lmres)
-x <- lmres$coefficients
-p <- x[2,4]
-if(p < .001){
-  pv <- "< .001"
+lmres = summary(lm(lithics$flake.weight ~ lithics$Y))
+p <- lmres$coefficient['lithics$Y','Pr(>|t|)']
+if (p < .001) {
+  p <- "< .001"
 }
 
 r2 <- round(lmres$adj.r.squared, 3)
@@ -345,7 +341,7 @@ r2 <- round(lmres$adj.r.squared, 3)
 
 _Complete Flake Weight_
 
-   Though median flake weight varies in magnitude between layers, there is consistency in its representation across the excavated areas of the cave in Layers 9, 8, 7, 5 (Figure 3). In each of these layers, the median flake weight is greatest in the front of the cave. However, there is a considerable degree of noise in this pattern (SOM Figure 6). Despite the noise, the Local Moran's I results reveal that statistically significant high clusters of median flake weight values are consistently found in the front part of the cave. Moreover, statistically significant clusters of low median flake weight values occur towards the cave terrace. A linear regression reveals a significant relationship showing that flakes greater than the median flake weight for each layer become increasingly over-represented as one moves from the cave terrace to the front of the cave (p-value: `r pv `, R-squared: `r r2`). Layer 4 shows a different pattern with no relationship between the distance from the front of the cave and median artifact weight. 
+   Though median flake weight varies in magnitude between layers, there is consistency in its representation across the excavated areas of the cave in Layers 9, 8, 7, 5 (Figure 3). In each of these layers, the median flake weight is greatest in the front of the cave. However, there is a considerable degree of noise in this pattern (SOM Figure 6). Despite the noise, the Local Moran's I results reveal that statistically significant high clusters of median flake weight values are consistently found in the front part of the cave. Moreover, statistically significant clusters of low median flake weight values occur towards the cave terrace. A linear regression reveals a significant relationship showing that flakes greater than the median flake weight for each layer become increasingly over-represented as one moves from the cave terrace to the front of the cave (p-value: `r p`, R-squared: `r r2`). Layer 4 shows a different pattern with no relationship between the distance from the front of the cave and median artifact weight. 
 
 ```{r figure4_cortex, fig.height=4.5, fig.width=6.5, dpi=600}
 
@@ -367,43 +363,22 @@ _Cortex_
 
    Non-random clustering of the cortex to mass ratio is observed in each layer (Figure 4). However, there is little consistency in the structure of the patterning between layers (SOM Figure 7). Layer 9 demonstrates the greatest degree of clustering. Large statistically high clusters of cortex to mass ratios occur on the cave terrace. The greatest clustering occurs nearest to the dripline. However, smaller high clusters are also present on the part of the cave terrace farthest from the mouth of the cave. Low clusters are at the farthest most extreme of the cave terrace as well as at the front of the cave. High and low clusters in Layer 8 are situated throughout the cave. Layer 7 shows no coherent patterning in the locations of both high clusters and low clusters as both types of clusters occur throughout all parts of the cave. In Layer 5 clusters representing low cortex to mass ratios occur predominantly on the cave terrace, farthest away from the dripline and mouth of the cave. In Layer 4, high clusters are in the front of the cave and at the very front of the cave terrace and clusters with low cortex are in the center portion of the cave terrace.
 
-```{r figure5_burning, fig.height=7, fig.width=6.5, dpi=600}
+```{r figure5_burning, fig.height = 8, fig.width = 6.5, dpi=600}
 
-plots = list()
+upper_plots = list()
 
 for (layer in rev(rdm_layers)) {
   mindens <- 0
   maxdens <- round(max(lithics$burning[lithics$LEVEL == layer]), 2)
-  quants <- as.numeric(quantile(lithics$burning[lithics$level == layer]))
-  xbreaks <- c(quants[1],
-               quants[2],
-               quants[3],
-               quants[4],
-               quants[5]) 
-
-  plots[[layer]] <- 
+  upper_plots[[layer]] <- 
     ggplot(lithics[lithics$LEVEL == layer,], aes(x = X, y = Y, color = burning)) +
-    geom_polygon(data = outline.df,
-                 aes(x = long, y = lat),
-                 color = "black",
-                 fill = NA,
-                 inherit.aes = FALSE) +
-    #geom_path(data = wall.df, aes(x=long,y=lat),fill = "brown", inherit.aes = FALSE)+
-    geom_point(size = .3, show.legend = TRUE) +
     scale_color_distiller(type =  "div",
                           palette = "RdYlBu",
                           limits = c(mindens, maxdens),
-                          breaks = round(xbreaks, 2),
-                          guide = guide_colourbar(title = "", nbin = 5)) +
-    geom_segment(aes(x = 1017, y = 1009.45, xend = 1019, yend = 1010.1),
-                 color = 'grey25', linetype = 'dashed') +
-    theme_dens +
-    coord_equal() +
-    scale_x_continuous(breaks = seq(from = 1016, to = 1020, by = 1),limits = c(1016,1020)) +
-    scale_y_continuous(breaks = seq(from = 1005, to = 1018, by = 2),limits = c(1005,1018)) +
-    theme(axis.text.x = element_text(angle = 300, vjust = .3, color = "white"),
-          axis.title.y = element_blank()) + 
-    theme(plot.margin = unit(c(0,.1,0,0), "cm")) +
+                          breaks = round(seq(from = mindens, to = maxdens, by = maxdens / 4),2),
+                          guide = guide_colourbar(title = "", nbin = 10, barheight = 3)) +
+    additional_settings +
+    theme_dens + theme(axis.text.x = element_blank(), plot.margin = unit(c(0, .1, -2, 0), "cm")) + 
     ggtitle(paste("Layer", layer))
   
     if (layer!='9') {
@@ -413,55 +388,33 @@ for (layer in rev(rdm_layers)) {
                 axis.line.y = element_blank()) }
 }
 
-upper_plots <- plots
 
-for (layer in rev(rdm_layers)) {
-  plots[[layer]] <-
-    ggplot(lithics[lithics$LEVEL == layer,], aes(x = X, y = Y, color = burning_COT)) +
-    geom_polygon(data = outline.df, 
-                 aes(x=long,y=lat),
-                 color = "black",
-                 fill = "NA",
-                 inherit.aes = FALSE,
-                 na.rm = TRUE) +
-   # geom_path(data = wall.df, aes(x=long,y=lat),fill = "brown", inherit.aes = FALSE) +
-    geom_point(size = .3, show.legend = FALSE) +
-    scale_color_manual(values = colors,
-                                 name = "Cluster Type",
-                                 labels = c("High Clusters",
-                                            "Low Clusters",
-                                            "Non-Significant")) +
-    geom_segment(aes(x = 1017, y = 1009.45, xend = 1019, yend = 1010.1),
-                 color = 'grey25', linetype = 'dashed') +
-    theme_plots +
-    coord_equal() +
-    scale_x_continuous(breaks = seq(from = 1016, to = 1020, by = 1),limits = c(1016,1020)) +
-    scale_y_continuous(breaks = seq(from = 1005, to = 1018, by = 2),limits = c(1005,1018)) +
-    theme(axis.text.x = element_text(angle = 300, vjust= .3)) +
-    theme(plot.margin = unit(c(0,.1,0,0), "cm")) 
-
-    if (layer!='9') {
-        plots[[layer]] = plots[[layer]] +
-          theme(axis.text.y = element_text(color = "white"),
-                axis.ticks.y = element_blank(),
-                axis.line.y = element_blank()) }
-
-}
+lower_plot = plot_local_moran(lithics %>%
+                   mutate(facet = factor(paste("Layer", lithics$LEVEL),
+                        levels = paste("Layer", unique(lithics$LEVEL)))) %>%
+                   mutate(analysis = droplevels(breakage_COT, exclude = NA)) %>%
+                   select(X, Y, facet, analysis), outline.df, colors, theme_plots)
+lower_plot$theme$plot.margin = margin = unit(c(0, .1, 0, 0), "cm")
+lower_plot$theme$panel.spacing.x = unit(1, "cm")
 
 layout <- rbind(c(1,2,3,4,5),
-                c(1,2,3,4,5),
-                c(6,7,8,9,10),
-                c(6,7,8,9,10))
+                c(6,6,6,6,6))
 
-if (tiff_figures) tiff('Figure_05.tif', res = 600, width = 6.5, height = 7, units = 'in')
+if (tiff_figures) tiff('Figure_05.tif', res = 600, width = 6.5, height = 8, units = 'in')
 
-grid.arrange(grobs = c(upper_plots, plots), layout_matrix = layout)
+grid.arrange(upper_plots[[1]],
+             upper_plots[[2]],
+             upper_plots[[3]],
+             upper_plots[[4]],
+             upper_plots[[5]],
+             lower_plot,
+             layout_matrix = layout)
 
 if (tiff_figures) graphics.off()
 
 ```
 
-**Figure 5. Top: The spatial distribution of burned flakes in relation to all flakes. Note how layers 7 and 9 show the greatest degree of spatial organization of burned flake proportions. Bottom: The spatial distribution of high and low clusters associated with the burning ratio. Orange indicates areas with statistically non-random high proportions of burned flakes. Blue represents statistically significant areas where there are fewer burned flakes.  The dashed line represents the current dripline (see also Figure 1).**
+**Figure 5. Top: The spatial distribution of burned flakes in relation to all flakes. Note how Layers 7 and 9 show the greatest degree of spatial organization of burned flake proportions. Bottom: The spatial distribution of high and low clusters associated with the burning ratio. Orange indicates areas with statistically non-random high proportions of burned flakes. Blue represents statistically significant areas where there are fewer burned flakes.  The dashed line represents the current dripline (see also Figure 1).**
 
 _Burned Flakes_
 
@@ -505,7 +458,7 @@ if (tiff_figures) graphics.off()
 
 _Scraper to flake ratio_
 
-  There is little consistency in how the proportion of scrapers in comparison to flakes is distributed throughout each layer (SOM Figure 9). Overall, scrapers comprise a small proportion of each assemblage. However, non-random structure is observed in each layer (Figure 7). In Layer 9, the high scraper to flake ratio values are primarily in the front of the cave and at the outer edge of the terrace. Though noisy, statistically significant clusters of the high scraper to flake ratio values appear to form a "ring-like" shape that surrounds a statistically significant cluster with low values. This low cluster also corresponds to the area where the proportion of burned flakes is the highest. In Layer 8, the largest high cluster of the scraper to flake ratio values are in the front of the cave along the drip line. However, high and low clusters are found throughout the cave. Within Layer 7 high clusters are in the front of the cave whereas low clusters are predominantly situated on the cave terrace. A high cluster also appears to correspond with the cluster of high proportions of burned flakes, with a large degree of overlap. Additionally, a few isolated small high clusters can be observed in the middle of the cave as well. The majority of the clustering of high scraper values in Layer 5 occurs in the front whereas low-clustering occurs toward the front of the cave terrace and beyond. Scraper to flake ratios within the cave terrace of Layer 5 is predominantly non-significant. Layer 4 shows the greatest degree of spatial structure with high clusters occupying the cave terrace and beyond whereas the low clusters in the front and central sections of the cave.
+  There is little consistency in how the proportion of scrapers in comparison to flakes is distributed throughout each layer (SOM Figure 9). Overall, scrapers comprise a small proportion of each assemblage. However, non-random structure is observed in each layer (Figure 7). In Layer 9, the high scraper to flake ratio values are primarily in the front of the cave and at the outer edge of the terrace. Though noisy, statistically significant clusters of the high scraper to flake ratio values appear to form a "ring-like" shape that surrounds a statistically significant cluster with low values. This low cluster also corresponds to the area where the proportion of burned flakes is the highest. In Layer 8, the largest high cluster of the scraper to flake ratio values are in the front of the cave along the drip line. However, high and low clusters are found throughout the cave. Within Layer 7 high clusters are in the front of the cave whereas low clusters are predominantly situated on the cave terrace. A high cluster also appears to correspond with the cluster of high proportions of burned flakes, with a large degree of overlap. Additionally, a few isolated small high clusters can be observed in the middle of the cave as well. The majority of the clustering of high scraper values in Layer 5 occurs in the front whereas low-clustering occurs toward the front of the cave terrace and beyond. Scraper to flake ratios within the cave terrace of Layer 5 are predominantly non-significant. Layer 4 shows the greatest degree of spatial structure with high clusters occupying the cave terrace and beyond whereas the low clusters are in the front and central sections of the cave.
 
 ```{r figure8_cores, fig.height=4.5, fig.width=6.5, dpi=600}
 
@@ -525,13 +478,13 @@ if (tiff_figures) graphics.off()
 
 _Core to flake ratio_
 
-   The core to flake ratio shows a fair degree of consistency across the layers (SOM Figure 10). Greater proportions of cores (low flake to core ratio) occur in the front of the cave and on the cave terrace. In addition, high clusters of the core to flake ratio occur; however, this pattern is not as systematic as the pattern observed in median weight. The organization of cores within each layer also shows similarities with the spatial distribution of scrapers. Much like the pattern observed in the scrapers, the clustering of core to flake ratios shows the greatest amount of patterning in Layer 9. Aside from a few very small high clusters of cores in the front and on the cave terrace, high clusters of the core to flake ratio are in the front of the cave (Figure 8). As with the scraper to flake ratio, high clusters of the core to flake ratio are situated on the edge of the area with high burned flake proportion values. The large low cluster of core to flake ratios on the cave terrace corresponds to the area of highest burned flake proportions. Low clusters of cores extend beyond the cave terrace away from the drip line to the very front of the excavation. High and low clusters of core to flake ratios are detected in Layer 8 but do not appear to show any apparent spatial structure. In Layer 7 statistically significant high and low clusters of cores are relatively small compared to Layer 9. The largest high clusters are on the cave terrace and front part of the cave. Few smaller clusters of high proportions of core to flake ratios are also found toward the central part of the cave and toward the very front of the excavation. In Layer 5, there is a fair amount of spatial separation between high clusters and low clusters of cores. High clusters occupy the front and cave terrace nearest to the dripline whereas low clusters are situated in the middle and form of the cave terrace. In Layer 4, clusters of high core to flake ratios are in the front of the cave and the cave terrace.
+   The core to flake ratio shows a fair degree of consistency across the layers (SOM Figure 10). Greater proportions of cores (low flake to core ratio) occur in the front of the cave and on the cave terrace. In addition, high clusters of the core to flake ratio occur; however, this pattern is not as systematic as the pattern observed in median weight. The organization of cores within each layer also shows similarities with the spatial distribution of scrapers. Much like the pattern observed in the scrapers, the clustering of core to flake ratios shows the greatest amount of patterning in Layer 9. Aside from a few very small high clusters of cores in the front and on the cave terrace, high clusters of the core to flake ratio are in the front of the cave (Figure 8). As with the scraper to flake ratio, high clusters of the core to flake ratio are situated on the edge of the area with high burned flake proportion values. The large low cluster of core to flake ratios on the cave terrace corresponds to the area of highest burned flake proportions. Low clusters of cores extend beyond the cave terrace away from the drip line to the very front of the excavation. High and low clusters of core to flake ratios are detected in Layer 8 but do not appear to show any apparent spatial structure. In Layer 7 statistically significant high and low clusters of cores are relatively small compared to Layer 9. The largest high clusters are on the cave terrace and front part of the cave. Few smaller clusters of high proportions of core to flake ratios are also found toward the central part of the cave and toward the very front of the excavation. In Layer 5, there is a fair amount of spatial separation between high clusters and low clusters of cores. High clusters occupy the front and cave terrace nearest to the dripline whereas low clusters are situated in the middle and front of the cave terrace. In Layer 4, clusters of high core to flake ratios are in the front of the cave and the cave terrace.
 
 **Discussion**
 
   The results yielded by this study make for several talking points regarding the spatial structure of time-averaged assemblages as well as for drawing behavioral inferences from them. The results of each index show spatial variation across each layer. None of the variations in each of these measurements tracks the overall density of artifacts, suggesting that they provide a useful, if not better, means for understanding stone artifact discard patterns preserved within palimpsests. Moreover, the Local Moran's I showed that the spatial variation of every metric also formed statistically non-random clusters. In the literature repetition is a common theme in how time-averaged patterns arise and, thus, are thought to represent the "modal behavior" [@Foley1981a]. At RDM, median complete flake weight is always greatest within the cave itself (as opposed to the terrace) in Layers 9-5. This result seems to suggest that at least some discard behavior was consistently carried out in specific parts of the cave. Though size sorting due to small changes in slope within the cave, particularly towards the mouth but also some towards the back, also need to be further examined. However, many of our indices showed inconsistent variation in both their spatial distribution and in relationship to one another across each layer. Despite the detection of non-random patterning, this lack of consistency in patterning makes it difficult to interpret many of these metrics in terms of long-term behavioral trends. This may imply that most of these discard behaviors were not structured by the morphology of the cave. Rather, it means that behavior was structured in relation to the other behaviors being carried out in the cave. The tendency for high core to flake ratios to cluster away from high cortex to mass ratio values in Layers 9-5 may suggest that cores were consistently discarded away from where they were initially reduced. This seems to support the notion that long terms discard patterns associated with the various activities carried out at Roc de Marsal did not occur in a vacuum. Palimpsests form as the result of the interaction of many different behavioral, environmental, and taphonomic processes through time and space. Thus, the non-random structure identified by the Local Moran's I test likely emerged from this dynamic interaction instead of from any modal or singular behavior. In this sense, it does not seem sensible to attempt to interpret these patterns in terms of the singular behaviors assumed to be reflected in them.
 
-  This is no more apparent than in patterning surrounding burning episodes at RDM. Despite the fact, that fire features span the excavated area in both Layers 9 and 7, there is a high degree of structure in each level. Counterintuitively, high proportions of burned flakes form large focal points that generally do not correspond to any single combustion feature. In the long term, aggregation localities subjected to burning would likely have been maintained with ash raked out and redeposited (an action detected micromorphologically in some cases at Roc de Marsal, see @Aldeias2012 and @goldberg_new_2012). If this is so, then the weak correlation between visible combustion features in Layers 9 and 7 and the hotspots of heated lithics may be due to some extent to maintenance over time, thus disassociating ash with the burn location. This, in turn, may be due to a limited number of places that fires can be placed. However, this was not true in all cases and thus it is difficult to generalize whether heated artifacts are a better index of fire locations than visible traces of fire. 
+  This is no more apparent than in patterning surrounding burning episodes at RDM. Despite the fact, that fire features span the excavated area in both Layers 9 and 7, there is a high degree of structure in each level. Counterintuitively, high proportions of burned flakes form large focal points that generally do not correspond to any single combustion feature. In the long term, aggregation localities subjected to burning would likely have been maintained with ash raked out and redeposited, an action detected micromorphologically in some cases at Roc de Marsal, see @Aldeias2012 and @goldberg_new_2012). If this is so, then the weak correlation between visible combustion features in Layers 9 and 7 and the hotspots of heated lithics may be due to some extent to maintenance over time, thus disassociating ash with the burn location. This, in turn, may be due to a limited number of places that fires can be placed. However, this was not true in all cases and thus it is difficult to generalize whether heated artifacts are a better index of fire locations than visible traces of fire. 
 
 ```{r}
 
@@ -565,15 +518,15 @@ for (layer in c('7', '9')) {
             geom_segment(aes(x = 1017, y = 1009.45, xend = 1019, yend = 1010.1),
                          color = 'grey25', linetype = 'dashed') +
             theme_dens + 
-            theme(legend.position = c(.2, .3)) +
+            theme(legend.position = c(.35, .25)) +
             scale_y_continuous(breaks = seq(from = 1005, to = 1012.5, by = 2),
                                limits = c(1005, 1012.5)) +
             theme(axis.title.x = element_blank()) + 
-            theme(plot.margin = unit(c(0,.1,0,0), "cm")) +
+            theme(plot.margin = unit(c(0, .1, 0, 0), "cm")) +
             ggtitle(ifelse(layer == '7', titles[n], ''))
     
     if (layer == '7') {
-        p = p + theme(axis.text.x = element_blank())
+      p = p + theme(axis.text.x = element_blank())
     }
 
     if (n!=1) {
@@ -593,10 +546,10 @@ for (layer in c('7', '9')) {
           axis.ticks.y = element_line(colour = "white"),
           axis.line.y = element_line(colour = "white"),
           axis.title.y = element_text(color = "white")) +
-        geom_point(data = plot_data,
-              aes(x, y, shape = shp),
-              shape = 21, size = point.size,
-              show.legend = FALSE, color = 'black', fill = colors[1]) } 
+          geom_point(data = plot_data,
+                aes(x, y, shape = shp),
+                shape = 21, size = point.size,
+                show.legend = FALSE, color = 'black', fill = colors[1]) } 
     else {
       p = p + labs(y = paste("Layer", layer)) }
     
