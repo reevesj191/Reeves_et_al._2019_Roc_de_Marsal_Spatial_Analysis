@@ -10,7 +10,7 @@ Please cite Reeves et al 2019 if the code is used in publications.
 
 ### Using this code
 
-Ensure that you have all of the packages listed in each of the markdown documents and scripts order to run the analyses and re-create our paper. If you wish to reproduce this paper, please note that the markdown documents make use of the 'rticles' package to format the outputted PDF file. This package calls out to latex to do alot of the heavily lifting when producing the PDF document. If you encounter errors please make sure you have a version of latex installed on your computer. 
+Ensure that you have all of the packages listed in each of the markdown documents and scripts to execute the code used to run our analysis and reproduce our results.  If you wish to reproduce this paper, please note that the markdown documents make use of the 'rticles' package to format the outputted PDF file. This package calls out to latex to do alot of the heavily lifting when producing the PDF document. If you encounter errors please make sure you have a version of latex installed on your computer. 
 
 ### A note on parallel processing
 
