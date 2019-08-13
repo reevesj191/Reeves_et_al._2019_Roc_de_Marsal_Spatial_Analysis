@@ -48,6 +48,7 @@ moving_window_par <- function(dat, eq, neighborhood, colname, ncores = 1) {
 ## that is now more optimized with the mi.dist.par() function that follows.  However,
 ## we have left it here because it returns a data.frame that is more useful for
 ## examining the effects of scale on the Moran I's index.
+
 mi.dist.plot <- function(dat, var, lower, icr, n) {
   ## dat = the spatial dataframe that holds the data that you want to test 
   ## var = the variable from the moving window results that you are testing

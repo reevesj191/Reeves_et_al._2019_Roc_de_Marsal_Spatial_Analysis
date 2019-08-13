@@ -2,7 +2,7 @@
 title: "Measuring Spatial Structure in Time-Averaged Deposits"
 authors:
 - name: Jonathan S. Reeves
-  address: George Washington University, Department of Anthropology, 2110 G Street North West, Washington, District of Columbia, 20052, USA
+  address: Universität Tübingen, Department of Prehistory and Quaternary Ecology, Schloßhohentübingen, 72070, Tübingen
   email: jsreeves@gwu.edu
   footnote: Corresponding Author
 - name: Shannon P. McPherron

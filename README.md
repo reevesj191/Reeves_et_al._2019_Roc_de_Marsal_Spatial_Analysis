@@ -8,6 +8,10 @@ If you find problems with the code, I am happy to fix any issues as they arise. 
 
 Please cite Reeves et al 2019 if the code is used in publications. 
 
+### Using this code
+
+Ensure that you have all of the packages listed in each of the markdown documents and scripts order to run the analyses and re-create our paper. If you wish to reproduce this paper, please note that the markdown documents make use of the 'rticles' package to format the outputted PDF file. This package calls out to latex to do alot of the heavily lifting when producing the PDF document. If you encounter errors please make sure you have a version of latex installed on your computer. 
+
 ### A note on parallel processing
 
 The moving window function has the capacity to  run using parallelization. Take care when using these features as a misallocation of cores can quickly result maxing out the computers RAM or processing capacity. This ultimate results in crashes. 
